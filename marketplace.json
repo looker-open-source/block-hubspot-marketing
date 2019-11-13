@@ -27,7 +27,7 @@
   "auxiliary_projects": [
     {
       "git_uri": "git://github.com/looker/block-hubspot-config.git",
-      "git_ref": "",
+      "git_ref": "eeb75770028caa5194b998b8a2600d9a20b36b3f",
       "label": "Hubspot Config",
       "constant_name": "CONFIG_PROJECT_NAME"
     }
