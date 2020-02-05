@@ -1,5 +1,5 @@
 {
-  "label": "Hubspot",
+  "label": "Hubspot Marketing",
   "category_label": "Models",
   "branding": {
     "image_uri": "https://marketplace-api.looker.com/block-icons/hubspot_icon.png",
@@ -26,9 +26,9 @@
   ],
   "auxiliary_projects": [
     {
-      "git_uri": "git://github.com/looker/block-hubspot-config.git",
+      "git_uri": "git://github.com/looker/block-hubspot-marketing-config.git",
       "git_ref": "eeb75770028caa5194b998b8a2600d9a20b36b3f",
-      "label": "Hubspot Config",
+      "label": "Hubspot Marketing Config",
       "constant_name": "CONFIG_PROJECT_NAME"
     }
   ]
