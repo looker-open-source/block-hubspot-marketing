@@ -1,9 +1,9 @@
-project_name: "block-hubspot"
+project_name: "block-hubspot-marketing"
 
 ################ Constants ################
 
 constant: CONFIG_PROJECT_NAME {
-  value: "block-hubspot-config"
+  value: "block-hubspot-marketing-config"
   export: override_required
 }
 
