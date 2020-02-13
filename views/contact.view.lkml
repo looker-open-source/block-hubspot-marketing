@@ -1,5 +1,5 @@
 view: contact {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.CONTACT ;;
+  sql_table_name: `spencer-white-tckt87992.hubspot_marketing.CONTACT` ;;
   drill_fields: [id]
 
   dimension: id {
