@@ -21,9 +21,9 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 
 explore: contact {
   join: email_event {
-    sql: ${contact.id} = ${email_event.recipient} ;;
+    sql_on: ${contact.id} = ${email_event.recipient} ;;
   }
   join: email_campaign {
-    sql: ${email_event.email_campaign_id} = ${email_campaign.id} ;;
+    sql_on: ${email_event.email_campaign_id} = ${email_campaign.id} ;;
   }
 }
