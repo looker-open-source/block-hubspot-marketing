@@ -27,3 +27,9 @@ explore: contact {
     sql_on: ${email_event.email_campaign_id} = ${email_campaign.id} ;;
   }
 }
+
+explore: calendar_event {
+  join: owner {
+    sql_on: ${calendar_event.owner_id} = ${owner.owner_id} ;;
+  }
+}
