@@ -1,5 +1,5 @@
 view: calendar_event {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.CALENDAR_EVENT ;;
+  sql_table_name: @{DATASET_NAME}.CALENDAR_EVENT ;;
   drill_fields: [id]
 
   dimension: id {

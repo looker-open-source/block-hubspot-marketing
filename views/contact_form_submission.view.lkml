@@ -1,5 +1,5 @@
 view: contact_form_submission {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.CONTACT_FORM_SUBMISSION ;;
+  sql_table_name: @{DATASET_NAME}.CONTACT_FORM_SUBMISSION ;;
 
   dimension: contact_id {
     type: number

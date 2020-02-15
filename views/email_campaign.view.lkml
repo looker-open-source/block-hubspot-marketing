@@ -1,5 +1,5 @@
 view: email_campaign {
-  sql_table_name: `spencer-white-tckt87992.hubspot_marketing.EMAIL_CAMPAIGN` ;;
+  sql_table_name: @{DATASET_NAME}.EMAIL_CAMPAIGN ;;
   drill_fields: [id]
 
   dimension: id {

@@ -12,8 +12,8 @@ constant: CONNECTION_NAME {
   export: override_required
 }
 
-constant: SCHEMA_NAME {
-  value: ""
+constant: DATASET_NAME {
+  value: "hubspot_marketing"
   export: override_required
 }
 
@@ -23,7 +23,7 @@ constant: SCHEMA_NAME {
 local_dependency: {
   project: "@{CONFIG_PROJECT_NAME}"
 
-  override_constant: SCHEMA_NAME {
-    value: "@{SCHEMA_NAME}"
+  override_constant: DATASET_NAME {
+    value: "@{DATASET_NAME}"
   }
 }

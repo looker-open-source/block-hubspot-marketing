@@ -1,5 +1,5 @@
 view: email_event_deferred {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.EMAIL_EVENT_DEFERRED ;;
+  sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_DEFERRED ;;
   drill_fields: [id]
 
   dimension: id {

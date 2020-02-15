@@ -1,5 +1,5 @@
 view: email_event_spam_report {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.EMAIL_EVENT_SPAM_REPORT ;;
+  sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_SPAM_REPORT ;;
   drill_fields: [id]
 
   dimension: id {
