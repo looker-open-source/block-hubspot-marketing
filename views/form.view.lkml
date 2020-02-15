@@ -1,5 +1,5 @@
 view: form {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.FORM ;;
+  sql_table_name: @{DATASET_NAME}.FORM ;;
 
   dimension: action {
     type: string

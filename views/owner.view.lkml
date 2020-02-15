@@ -1,5 +1,5 @@
 view: owner {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.OWNER ;;
+  sql_table_name: @{DATASET_NAME}.OWNER ;;
   drill_fields: [owner_id]
 
   dimension: owner_id {

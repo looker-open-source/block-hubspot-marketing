@@ -1,5 +1,5 @@
 view: contact_list_member {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.CONTACT_LIST_MEMBER ;;
+  sql_table_name: @{DATASET_NAME}.CONTACT_LIST_MEMBER ;;
 
   dimension: added_at {
     type: string

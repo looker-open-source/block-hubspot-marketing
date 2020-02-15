@@ -1,5 +1,5 @@
 view: email_event_open {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.EMAIL_EVENT_OPEN ;;
+  sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_OPEN ;;
   drill_fields: [id]
 
   dimension: id {

@@ -1,5 +1,5 @@
 view: contact_property_history {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.CONTACT_PROPERTY_HISTORY ;;
+  sql_table_name: @{DATASET_NAME}.CONTACT_PROPERTY_HISTORY ;;
 
   dimension: contact_id {
     type: number

@@ -1,5 +1,5 @@
 view: email_subscription_change {
-  sql_table_name: spencer-white-tckt87992.hubspot_marketing.EMAIL_SUBSCRIPTION_CHANGE ;;
+  sql_table_name: @{DATASET_NAME}.EMAIL_SUBSCRIPTION_CHANGE ;;
 
   dimension: caused_by_event_id {
     type: number
