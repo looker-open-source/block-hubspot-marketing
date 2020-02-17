@@ -6,19 +6,24 @@ view: email_event_deferred {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    group_label: "Deferred Event"
   }
 
   dimension: attempt {
     type: string
     sql: ${TABLE}.attempt ;;
+    group_label: "Deferred Event"
   }
 
   dimension: response {
     type: string
     sql: ${TABLE}.response ;;
+    group_label: "Deferred Event"
   }
 
   measure: count {
+    label: "Deferred Count"
+    description: "The recipient’s email server has temporarily rejected message, and subsequent attempts will be made to deliver the message."
     type: count
     drill_fields: [id]
   }
