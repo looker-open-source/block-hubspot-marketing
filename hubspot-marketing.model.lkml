@@ -43,6 +43,54 @@ explore: contact {
   join: email_campaign {
     sql_on: ${email_event.email_campaign_id} = ${email_campaign.id} ;;
   }
+  join: email_event_sent {
+    sql_on: ${email_event.id} = ${email_event_sent.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_suppressed {
+    sql_on: ${email_event.id} = ${email_event_suppressed.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_click {
+    sql_on: ${email_event.id} = ${email_event_click.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_dropped {
+    sql_on: ${email_event.id} = ${email_event_dropped.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_open {
+    sql_on: ${email_event.id} = ${email_event_open.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_delivered {
+    sql_on: ${email_event.id} = ${email_event_delivered.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_forward {
+    sql_on: ${email_event.id} = ${email_event_forward.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_deferred {
+    sql_on: ${email_event.id} = ${email_event_deferred.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_print {
+    sql_on: ${email_event.id} = ${email_event_print.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_bounce {
+    sql_on: ${email_event.id} = ${email_event_bounce.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_spam_report {
+    sql_on: ${email_event.id} = ${email_event_spam_report.id} ;;
+    view_label: "Email Event Attributes"
+  }
+  join: email_event_status_change {
+    sql_on: ${email_event.id} = ${email_event_status_change.id} ;;
+    view_label: "Email Event Attributes"
+  }
 }
 
 explore: owner {
