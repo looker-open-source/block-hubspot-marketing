@@ -28,9 +28,11 @@ view: email_event {
     sql: ${TABLE}.caused_by_id ;;
   }
 
-  dimension: created {
-    type: string
-    sql: ${TABLE}.created ;;
+  dimension_group: created {
+    type: time
+    timeframes: [time, date, week, month, raw]
+    sql: PARSE_DATETIME('%Y-%m-%dT%H:%M:%S',${TABLE}.created) ;;
+    datatype: datetime
   }
 
   dimension: email_campaign_id {
