@@ -43,6 +43,13 @@ explore: contact {
   join: email_campaign {
     sql_on: ${email_event.email_campaign_id} = ${email_campaign.id} ;;
   }
+  join: email_subscription_change {
+    sql_on: ${email_event.id} = ${email_subscription_change.caused_by_event_id} ;;
+  }
+  join: email_subscription {
+    sql_on: ${email_subscription_change.subscription_id} = ${email_subscription.id} ;;
+  }
+  ### email_event_* tables all labeled as "Email Event Attributes"
   join: email_event_sent {
     sql_on: ${email_event.id} = ${email_event_sent.id} ;;
     view_label: "Email Event Attributes"
