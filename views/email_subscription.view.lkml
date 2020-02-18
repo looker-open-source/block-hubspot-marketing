@@ -26,6 +26,7 @@ view: email_subscription {
   dimension: portal_id {
     type: number
     sql: ${TABLE}.portal_id ;;
+    description: "An ID referencing the HubSpot account associated with the item. This will correspond to your account."
   }
 
   measure: count {

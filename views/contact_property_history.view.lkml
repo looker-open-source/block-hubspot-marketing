@@ -1,6 +1,12 @@
 view: contact_property_history {
   sql_table_name: @{DATASET_NAME}.CONTACT_PROPERTY_HISTORY ;;
 
+  dimension: pk {
+    hidden: yes
+    primary_key: yes
+    sql: CONCAT(CAST(${contact_id} AS STRING), CAST(${timestamp} AS STRING), CAST(${name} AS STRING) ;;
+  }
+
   dimension: contact_id {
     type: number
     # hidden: yes
