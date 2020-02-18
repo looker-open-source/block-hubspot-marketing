@@ -1,6 +1,12 @@
 view: contact_list_member {
   sql_table_name: @{DATASET_NAME}.CONTACT_LIST_MEMBER ;;
 
+  dimension: pk {
+    hidden: yes
+    primary_key: yes
+    sql: CONCAT(CAST(${contact_id} AS STRING), CAST(${contact_list_id} AS STRING)) ;;
+  }
+
   dimension: added_at {
     type: string
     sql: ${TABLE}.added_at ;;

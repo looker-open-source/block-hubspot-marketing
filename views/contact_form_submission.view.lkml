@@ -1,6 +1,12 @@
 view: contact_form_submission {
   sql_table_name: @{DATASET_NAME}.CONTACT_FORM_SUBMISSION ;;
 
+  dimension: pk {
+    hidden: yes
+    primary_key: yes
+    sql: CONCAT(CAST(${contact_id} AS STRING), CAST(${conversion_id} AS STRING)) ;;
+  }
+
   dimension: contact_id {
     type: number
     # hidden: yes
