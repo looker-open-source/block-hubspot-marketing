@@ -12,12 +12,14 @@ view: email_event_deferred {
   dimension: attempt {
     type: string
     sql: ${TABLE}.attempt ;;
+    description: "The delivery attempt number."
     group_label: "Deferred Event"
   }
 
   dimension: response {
     type: string
     sql: ${TABLE}.response ;;
+    description: "The full response from the recipient's email server."
     group_label: "Deferred Event"
   }
 

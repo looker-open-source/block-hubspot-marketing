@@ -12,18 +12,21 @@ view: email_event_bounce {
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
+    description: "The best-guess of the type of bounce encountered. If an appropriate category couldn't be determined, this property is omitted."
     group_label: "Bounce Event"
   }
 
   dimension: response {
     type: string
     sql: ${TABLE}.response ;;
+    description: "The full response from the recipient's email server."
     group_label: "Bounce Event"
   }
 
   dimension: status {
-    type: yesno
+    type: string
     sql: ${TABLE}.status ;;
+    description: "The status code returned from the recipient's email server."
     group_label: "Bounce Event"
   }
 

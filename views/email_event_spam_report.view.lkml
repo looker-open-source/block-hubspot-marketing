@@ -18,6 +18,7 @@ view: email_event_spam_report {
   dimension: user_agent {
     type: string
     sql: ${TABLE}.user_agent ;;
+    description: "The user agent responsible for the event, e.g. “Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36"
     group_label: "Spam Report Event"
   }
 
