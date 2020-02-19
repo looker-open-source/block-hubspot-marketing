@@ -99,6 +99,11 @@ view: email_event {
     description: "The type of event."
   }
 
+  dimension: caused_subscription_change {
+    type: yesno
+    sql: CASE WHEN ${email_subscription_change.caused_by_event_id} IS NOT NULL THEN TRUE ELSE FALSE END;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, app_name, email_campaign.app_name, email_campaign.name, email_campaign.id]
