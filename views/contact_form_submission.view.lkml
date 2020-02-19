@@ -45,6 +45,6 @@ view: contact_form_submission {
 
   measure: count {
     type: count
-    drill_fields: [contact.id]
+    drill_fields: [contact_id]
   }
 }
