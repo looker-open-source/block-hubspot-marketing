@@ -46,8 +46,9 @@ view: email_event {
       fiscal_quarter_of_year,
       fiscal_year
     ]
-    sql: PARSE_TIMESTAMP('%c', ${TABLE}.created) ;;
+    sql: PARSE_TIMESTAMP('%m-%d-%Y', SUBSTR(${TABLE}.created, 0, 10)) ;;
     description: "The timestamp (in milliseconds since epoch) when this event was created."
+    # New description: Date
     datatype: datetime
   }
 
@@ -96,6 +97,11 @@ view: email_event {
     type: string
     sql: ${TABLE}.type ;;
     description: "The type of event."
+  }
+
+  dimension: caused_subscription_change {
+    type: yesno
+    sql: CASE WHEN ${email_subscription_change.caused_by_event_id} IS NOT NULL THEN TRUE ELSE FALSE END;;
   }
 
   measure: count {
