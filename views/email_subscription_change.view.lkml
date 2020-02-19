@@ -4,7 +4,7 @@ view: email_subscription_change {
   dimension: pk {
     hidden: yes
     primary_key: yes
-    sql: CONCAT(CAST(${recipient} AS STRING), CAST(${timestamp} AS STRING)) ;;
+    sql: CONCAT(CAST(${recipient} AS STRING), CAST(${timestamp_raw} AS STRING)) ;;
   }
 
   dimension: caused_by_event_id {
@@ -48,9 +48,10 @@ view: email_subscription_change {
     description: "An ID referencing the email subscription associated with the change."
   }
 
-  dimension: timestamp {
-    type: number
-    sql: ${TABLE}.timestamp ;;
+  dimension_group: timestamp {
+    type: time
+    datatype: datetime
+    sql: PARSE_TIMESTAMP('%c', ${TABLE}.timestamp) ;;
     description: "The timestamp (in milliseconds since epoch) when this change occurred. If 'causedByEvent' is present, this will be absent."
   }
 

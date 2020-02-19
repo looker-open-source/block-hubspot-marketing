@@ -11,6 +11,7 @@ view: contact {
   dimension: property_email {
     type: string
     sql: ${TABLE}.property_email ;;
+    description: "The contact's primary email address."
   }
 
   dimension: property_star {
