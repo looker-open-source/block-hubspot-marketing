@@ -33,9 +33,30 @@ view: contact_form_submission {
     sql: ${TABLE}.portal_id ;;
   }
 
-  dimension: timestamp {
-    type: string
-    sql: ${TABLE}.timestamp ;;
+  # dimension: timestamp {
+  #   type: string
+  #   sql: ${TABLE}.timestamp ;;
+  # }
+
+  dimension_group: timestamp {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      hour_of_day,
+      day_of_week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.timestamp) ;;
+    # New description: Date
+    datatype: datetime
   }
 
   dimension: title {
@@ -45,6 +66,6 @@ view: contact_form_submission {
 
   measure: count {
     type: count
-    drill_fields: [contact_id]
+    drill_fields: [contact_id, timestamp_raw]
   }
 }
