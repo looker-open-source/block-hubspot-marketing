@@ -29,4 +29,12 @@ view: email_event_delivered {
     type: count
     drill_fields: [id]
   }
+
+  measure: delivered_pct {
+    label: "Delivered Percent"
+    description: "Percent of sent emails that were successfully delivered."
+    type: number
+    sql: ${count}/${email_event_delivered.count} ;;
+    drill_fields: [id]
+  }
 }

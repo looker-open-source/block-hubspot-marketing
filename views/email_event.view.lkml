@@ -34,8 +34,19 @@ view: email_event {
 
   dimension_group: created {
     type: time
-    timeframes: [time, date, week, month, raw]
-    sql: PARSE_DATETIME('%Y-%m-%dT%H:%M:%S', ${TABLE}.created) ;;
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%c', ${TABLE}.created) ;;
     description: "The timestamp (in milliseconds since epoch) when this event was created."
     datatype: datetime
   }
@@ -90,5 +101,14 @@ view: email_event {
   measure: count {
     type: count
     drill_fields: [id, app_name, email_campaign.app_name, email_campaign.name, email_campaign.id]
+  }
+
+  measure: first_touch {
+    type: date
+    sql: MIN(${created_raw}) ;;
+  }
+  measure: last_touch {
+    type: date
+    sql: MAX(${created_raw}) ;;
   }
 }
