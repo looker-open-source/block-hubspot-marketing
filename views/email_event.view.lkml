@@ -6,16 +6,19 @@ view: email_event {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    description: "A randomly-generated ID for this event."
   }
 
   dimension: app_id {
     type: number
     sql: ${TABLE}.app_id ;;
+    description: "An ID referencing the HubSpot application that sent the email message."
   }
 
   dimension: app_name {
     type: string
     sql: ${TABLE}.app_name ;;
+    description: "The name of the HubSpot application that sent the email message. Note that this is a derived value, and may be modified at any time."
   }
 
   dimension: caused_by_created {
@@ -26,12 +29,14 @@ view: email_event {
   dimension: caused_by_id {
     type: number
     sql: ${TABLE}.caused_by_id ;;
+    description: "The EventId which uniquely identifies the event which directly caused this event. If not applicable, this property is omitted."
   }
 
   dimension_group: created {
     type: time
     timeframes: [time, date, week, month, raw]
-    sql: PARSE_DATETIME('%Y-%m-%dT%H:%M:%S',${TABLE}.created) ;;
+    sql: PARSE_DATETIME('%Y-%m-%dT%H:%M:%S', ${TABLE}.created) ;;
+    description: "The timestamp (in milliseconds since epoch) when this event was created."
     datatype: datetime
   }
 
@@ -39,6 +44,7 @@ view: email_event {
     type: number
     # hidden: yes
     sql: ${TABLE}.email_campaign_id ;;
+    description: "An ID referencing the email campaign which the email message is part of."
   }
 
   dimension: obsoleted_by_created {
@@ -49,16 +55,19 @@ view: email_event {
   dimension: obsoleted_by_id {
     type: number
     sql: ${TABLE}.obsoleted_by_id ;;
+    description: "The Event ID which uniquely identifies the follow-on event which makes this current event obsolete. If not applicable, this property is omitted."
   }
 
   dimension: portal_id {
     type: number
     sql: ${TABLE}.portal_id ;;
+    description: "An ID referencing the HubSpot account that sent the email message. This will correspond to your account."
   }
 
   dimension: recipient {
     type: number
     sql: ${TABLE}.recipient ;;
+    description: "The email address of the recipient of the email message."
   }
 
   dimension: sent_by_created {
@@ -69,11 +78,13 @@ view: email_event {
   dimension: sent_by_id {
     type: number
     sql: ${TABLE}.sent_by_id ;;
+    description: "The Event ID which uniquely identifies the email message's SENT event. If not applicable, this property is omitted."
   }
 
   dimension: type {
     type: string
     sql: ${TABLE}.type ;;
+    description: "The type of event."
   }
 
   measure: count {

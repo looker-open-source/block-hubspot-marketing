@@ -12,12 +12,14 @@ view: email_event_delivered {
   dimension: response {
     type: string
     sql: ${TABLE}.response ;;
+    description: "The full response from the recipient's email server."
     group_label: "Delivered Event"
   }
 
   dimension: smtp_id {
     type: number
     sql: ${TABLE}.smtp_id ;;
+    description: "An ID attached to the message by HubSpot."
     group_label: "Delivered Event"
   }
 

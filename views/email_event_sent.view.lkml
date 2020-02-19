@@ -12,30 +12,35 @@ view: email_event_sent {
   dimension: bcc {
     type: string
     sql: ${TABLE}.bcc ;;
+    description: "The 'bcc' field of the email message."
     group_label: "Sent Event"
   }
 
   dimension: cc {
     type: string
     sql: ${TABLE}.cc ;;
+    description: "The 'cc' field of the email message."
     group_label: "Sent Event"
   }
 
   dimension: from {
     type: string
     sql: ${TABLE}.``from`` ;;
+    description: "The 'from' field of the email message."
     group_label: "Sent Event"
   }
 
   dimension: reply_to {
     type: string
     sql: ${TABLE}.reply_to ;;
+    description: "The 'reply-to' field of the email message."
     group_label: "Sent Event"
   }
 
   dimension: subject {
     type: string
     sql: ${TABLE}.subject ;;
+    description: "The subject line of the email message."
     group_label: "Sent Event"
   }
 
