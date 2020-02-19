@@ -25,7 +25,7 @@ view: email_event_sent {
 
   dimension: from {
     type: string
-    sql: ${TABLE}.``from`` ;;
+    sql: ${TABLE}.`from` ;;
     description: "The 'from' field of the email message."
     group_label: "Sent Event"
   }
