@@ -7,6 +7,7 @@ view: calendar_event {
     type: number
     description: "The unique id of the task."
     sql: ${TABLE}.id ;;
+    hidden: yes
   }
 
   dimension: avatar_url {
@@ -18,6 +19,7 @@ view: calendar_event {
     type: number
     value_format_name: id
     sql: ${TABLE}.campaign_guid ;;
+    hidden: yes
     description: "Value of campaign GUID associated with Content."
   }
 
@@ -30,6 +32,7 @@ view: calendar_event {
   dimension: category_id {
     type: number
     sql: ${TABLE}.category_id ;;
+    hidden: yes
     description: "One of 2 (email, recurring-email), 3 (blog-post), 1 (landing-page), 5 (legacy-page), 4 (site-page)."
   }
 
@@ -41,6 +44,7 @@ view: calendar_event {
   dimension: content_id {
     type: number
     sql: ${TABLE}.content_id ;;
+    hidden: yes
     description: "ID value of the COS content object associated with the event, null for if nothing associated."
   }
 
@@ -76,6 +80,7 @@ view: calendar_event {
   dimension: group_id {
     type: number
     sql: ${TABLE}.group_id ;;
+    hidden: yes
   }
 
   dimension: group_order {
@@ -97,13 +102,14 @@ view: calendar_event {
 
   dimension: owner_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.owner_id ;;
   }
 
   dimension: portal_id {
     type: number
     sql: ${TABLE}.portal_id ;;
+    hidden: yes
     description: "The hub id."
   }
 
@@ -148,6 +154,7 @@ view: calendar_event {
   dimension: user_id {
     type: number
     sql: ${TABLE}.user_id ;;
+    hidden: yes
   }
 
   dimension: user_ids {

@@ -6,6 +6,7 @@ view: email_event_spam_report {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    hidden: yes
     group_label: "Spam Report Event"
   }
 

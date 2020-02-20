@@ -6,6 +6,7 @@ view: owner {
     primary_key: yes
     type: number
     sql: ${TABLE}.owner_id ;;
+    hidden: yes
   }
 
   dimension: created_at {
@@ -31,6 +32,7 @@ view: owner {
   dimension: portal_id {
     type: number
     sql: ${TABLE}.portal_id ;;
+    hidden: yes
   }
 
   dimension: type {

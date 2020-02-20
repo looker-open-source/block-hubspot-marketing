@@ -6,6 +6,7 @@ view: email_campaign {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    hidden: yes
   }
 
   dimension: app_id {
@@ -21,6 +22,7 @@ view: email_campaign {
   dimension: content_id {
     type: number
     sql: ${TABLE}.content_id ;;
+    hidden: yes
   }
 
   dimension: name {
