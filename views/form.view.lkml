@@ -51,6 +51,7 @@ view: form {
   dimension: portal_id {
     type: number
     sql: ${TABLE}.portal_id ;;
+    hidden: yes
   }
 
   dimension: redirect {

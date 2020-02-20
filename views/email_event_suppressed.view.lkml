@@ -6,6 +6,7 @@ view: email_event_suppressed {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    hidden: yes
     group_label: "Suppressed Event"
   }
 

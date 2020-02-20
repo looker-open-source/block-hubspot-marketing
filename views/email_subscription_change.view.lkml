@@ -28,6 +28,7 @@ view: email_subscription_change {
   dimension: portal_id {
     type: number
     sql: ${TABLE}.portal_id ;;
+    hidden: yes
     description: "An ID referencing the HubSpot account associated with the change. This will correspond to your account."
   }
 

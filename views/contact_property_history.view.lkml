@@ -9,7 +9,7 @@ view: contact_property_history {
 
   dimension: contact_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.contact_id ;;
   }
 
@@ -26,6 +26,7 @@ view: contact_property_history {
   dimension: source_id {
     type: number
     sql: ${TABLE}.source_id ;;
+    hidden: yes
   }
 
   dimension: source_label {
