@@ -9,18 +9,20 @@ view: contact_form_submission {
 
   dimension: contact_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.contact_id ;;
   }
 
   dimension: conversion_id {
     type: number
     sql: ${TABLE}.conversion_id ;;
+    hidden: yes
   }
 
   dimension: form_id {
     type: number
     sql: ${TABLE}.form_id ;;
+    hidden: yes
   }
 
   dimension: page_url {
@@ -31,6 +33,7 @@ view: contact_form_submission {
   dimension: portal_id {
     type: number
     sql: ${TABLE}.portal_id ;;
+    hidden: yes
   }
 
   # dimension: timestamp {
@@ -55,7 +58,6 @@ view: contact_form_submission {
       fiscal_year
     ]
     sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.timestamp) ;;
-    # New description: Date
     datatype: datetime
   }
 

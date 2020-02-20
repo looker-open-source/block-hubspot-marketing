@@ -6,6 +6,7 @@ view: email_event_status_change {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    hidden: yes
     group_label: "Status Change Event"
   }
 

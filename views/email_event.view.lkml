@@ -12,6 +12,7 @@ view: email_event {
   dimension: app_id {
     type: number
     sql: ${TABLE}.app_id ;;
+    hidden: yes
     description: "An ID referencing the HubSpot application that sent the email message."
   }
 
@@ -53,7 +54,7 @@ view: email_event {
 
   dimension: email_campaign_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.email_campaign_id ;;
     description: "An ID referencing the email campaign which the email message is part of."
   }
@@ -71,6 +72,7 @@ view: email_event {
 
   dimension: portal_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.portal_id ;;
     description: "An ID referencing the HubSpot account that sent the email message. This will correspond to your account."
   }
@@ -89,6 +91,7 @@ view: email_event {
   dimension: sent_by_id {
     type: number
     sql: ${TABLE}.sent_by_id ;;
+    hidden: yes
     description: "The Event ID which uniquely identifies the email message's SENT event. If not applicable, this property is omitted."
   }
 

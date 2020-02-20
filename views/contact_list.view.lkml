@@ -6,6 +6,7 @@ view: contact_list {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    hidden: yes
   }
 
   dimension: created_at {
@@ -61,6 +62,7 @@ view: contact_list {
   dimension: portal_id {
     type: number
     sql: ${TABLE}.portal_id ;;
+    hidden: yes
   }
 
   dimension: updated_at {
