@@ -6,6 +6,7 @@ view: email_event_dropped {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    hidden: yes
     group_label: "Dropped Event"
   }
 

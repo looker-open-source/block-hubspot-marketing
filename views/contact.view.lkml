@@ -2,7 +2,12 @@ view: contact {
   sql_table_name: @{DATASET_NAME}.CONTACT ;;
   drill_fields: [id]
 
-  dimension: id { primary_key: yes type: number sql: ${TABLE}.id ;; }
+  dimension: id {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}.id ;;
+    hidden: yes
+  }
 
   dimension: property_address {
     type: string

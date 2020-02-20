@@ -14,13 +14,13 @@ view: contact_list_member {
 
   dimension: contact_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.contact_id ;;
   }
 
   dimension: contact_list_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.contact_list_id ;;
   }
 

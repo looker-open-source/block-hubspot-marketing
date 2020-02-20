@@ -6,6 +6,7 @@ view: email_event_delivered {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    hidden: yes
     group_label: "Delivered Event"
   }
 
@@ -19,6 +20,7 @@ view: email_event_delivered {
   dimension: smtp_id {
     type: number
     sql: ${TABLE}.smtp_id ;;
+    hidden: yes
     description: "An ID attached to the message by HubSpot."
     group_label: "Delivered Event"
   }

@@ -6,6 +6,7 @@ view: email_event_click {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    hidden: yes
     group_label: "Click Event"
   }
 
