@@ -36,7 +36,7 @@ view: email_event_delivered {
     label: "Delivered Percent"
     description: "Percent of sent emails that were successfully delivered."
     type: number
-    sql: ${email_event.count}/${email_event_delivered.count} ;;
+    sql: ${email_event_delivered.count}/${email_event_sent.count} ;;
     drill_fields: [id]
     value_format_name: percent_1
   }
