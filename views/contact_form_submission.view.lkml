@@ -70,7 +70,7 @@ view: contact_form_submission {
   }
 
   measure: conversions {
-    type: sum
+    type: count_distinct
     sql: ${conversion_id} ;;
   }
 }
