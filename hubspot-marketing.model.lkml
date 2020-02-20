@@ -39,7 +39,7 @@ explore: contact {
   }
   join: campaign_resulted_in_conversion {
     from: email_campaign
-    sql: ${form.lead_nurturing_campaign_id} = ${campaign_resulted_in_conversion.id} ;;
+    sql_on: ${form.lead_nurturing_campaign_id} = ${campaign_resulted_in_conversion.id} ;;
   }
   join: email_event {
     sql_on: ${contact.id} = ${email_event.recipient} ;;
