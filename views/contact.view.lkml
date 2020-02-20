@@ -9,704 +9,818 @@ view: contact {
     hidden: yes
   }
 
-  dimension: property_address {
+  dimension: address {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_address ;;
-    description: "the contact's street address, including apartment or unit #"
+    description: "The contact's street address, including apartment or unit #"
   }
 
-  dimension: property_annualrevenue {
+  dimension: annualrevenue {
+    group_label: "Company Info"
     type: number
     sql: ${TABLE}.property_annualrevenue ;;
-    description: "annual company revenue"
+    description: "Annual company revenue"
   }
 
-  dimension: property_city {
+  dimension: city {
+    group_label: "Demographics"
     type: string
     sql: ${TABLE}.property_city ;;
-    description: "a contact's city of residence"
+    description: "A contact's city of residence"
   }
 
-  dimension: property_company {
+  dimension: company {
+    group_label: "Company Info"
     type: string
     sql: ${TABLE}.property_company ;;
-    description: "the name of the contact's company. This is separate from the Name property of the contact's associated company and can be set independently. Learn more about the difference between Company name and Associated company."
+    description: "The name of the contact's company. This is separate from the Name property of the contact's associated company and can be set independently. Learn more about the difference between Company name and Associated company."
   }
 
-  dimension: property_company_size {
+  dimension: company_size {
+    group_label: "Company Info"
     type: number
     sql: ${TABLE}.property_company_size ;;
-    description: "the number of company employees"
+    description: "The number of company employees"
   }
 
-  dimension: property_country {
+  dimension: country {
+    group_label: "Demographics"
     type: string
     sql: ${TABLE}.property_country ;;
-    description: "the contact's country of residence. This might be set via import, form, or integration"
+    description: "The contact's country of residence. This might be set via import, form, or integration"
   }
 
-  dimension: property_createdate {
-    type: string
-    sql: ${TABLE}.property_createdate ;;
-    description: "the date that a contact was created in your HubSpot account"
+  dimension_group: property_createdate {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+      ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_createdate)  ;;
+    description: "The date that a contact was created in your HubSpot account"
+    datatype: datetime
   }
 
-  dimension: property_currentlyinworkflow {
+  dimension: currently_in_work_flow {
     type: yesno
     sql: ${TABLE}.property_currentlyinworkflow ;;
-    description: "indicates if the contact is currently enrolled in any workflow."
+    description: "Indicates if the contact is currently enrolled in any workflow."
   }
 
-  dimension: property_date_of_birth {
+  dimension: date_of_birth {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_date_of_birth ;;
-    description: "the date of birth as provided through a lead ad form, set by the ads tool"
+    description: "The date of birth as provided through a lead ad form, set by the ads tool"
   }
 
-  dimension: property_degree {
+  dimension: degree {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_degree ;;
-    description: "the degree as provided through a lead ad form, set by the ads tool"
+    description: "The degree as provided through a lead ad form, set by the ads tool"
   }
 
-  dimension: property_email {
+  dimension: email {
+    group_label: "Contact Methods"
     type: string
     sql: ${TABLE}.property_email ;;
-    description: "the contact's primary email address"
+    description: "The contact's primary email address."
   }
 
-  dimension: property_engagements_last_meeting_booked_campaign {
+  dimension: engagements_last_meeting_booked_campaign {
+    group_label: "UTM Parameters"
     type: string
     sql: ${TABLE}.property_engagements_last_meeting_booked_campaign ;;
-    description: "this UTM parameter shows which marketing campaign (e.g. a specific email) referred the contact to the meetings tool for their most recent booking. This property is only populated when you add tracking parameters to your meeting link."
+    description: "This UTM parameter shows which marketing campaign (e.g. a specific email) referred the contact to the meetings tool for their most recent booking. This property is only populated when you add tracking parameters to your meeting link."
   }
 
-  dimension: property_engagements_last_meeting_booked_medium {
+  dimension: engagements_last_meeting_booked_medium {
+    group_label: "UTM Parameters"
     type: string
     sql: ${TABLE}.property_engagements_last_meeting_booked_medium ;;
-    description: "this UTM parameter shows which channel (e.g. email) referred the contact to the meetings tool for their most recent booking. This property is only populated when you add tracking parameters to your meeting link."
+    description: "This UTM parameter shows which channel (e.g. email) referred the contact to the meetings tool for their most recent booking. This property is only populated when you add tracking parameters to your meeting link."
   }
 
-  dimension: property_engagements_last_meeting_booked_source {
+  dimension: engagements_last_meeting_booked_source {
+    group_label: "UTM Parameters"
     type: string
     sql: ${TABLE}.property_engagements_last_meeting_booked_source ;;
-    description: "this UTM parameter shows which site (e.g. Twitter) referred the contact to the meetings tool for their most recent booking. This property is only populated when you add tracking parameters to your meeting link."
+    description: "This UTM parameter shows which site (e.g. Twitter) referred the contact to the meetings tool for their most recent booking. This property is only populated when you add tracking parameters to your meeting link."
   }
 
-  dimension: property_fax {
+  dimension: fax {
+    group_label: "Contact Methods"
     type: string
     sql: ${TABLE}.property_fax ;;
-    description: "the contact's primary fax number"
+    description: "The contact's primary fax number"
   }
 
-  dimension: property_field_of_study {
+  dimension: field_of_study {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_field_of_study ;;
-    description: "the field of study as provided through a lead ad form, set by the ads tool."
+    description: "The field of study as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: property_first_deal_created_date {
-    type: string
-    sql: ${TABLE}.property_first_deal_created_date ;;
-    description: "the create date of the first deal a contact is associated to."
+  dimension_group: property_first_deal_created_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_first_deal_created_date)  ;;
+    description: "The create date of the first deal a contact is associated to."
   }
 
-  dimension: property_firstname {
+  dimension: firstname {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_firstname ;;
-    description: "the contact's first name."
+    description: "The contact's first name."
   }
 
-  dimension: property_gender {
+  dimension: gender {
+    group_label: "Demographics"
     type: string
     sql: ${TABLE}.property_gender ;;
-    description: "the gender as provided through a lead ad form, set by the ads tool"
+    description: "The gender as provided through a lead ad form, set by the ads tool"
   }
 
-  dimension: property_graduation_date {
+  dimension: graduation_date {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_graduation_date ;;
-    description: "the graduation date of education as provided through a lead ad form, set by the ads tool."
+    description: "The graduation date of education as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: property_hs_all_accessible_team_ids {
+  dimension: all_accessible_team_ids {
     type: string
     sql: ${TABLE}.property_hs_all_accessible_team_ids ;;
     description: ""
   }
 
-  dimension: property_hs_all_owner_ids {
+  dimension: all_owner_ids {
     type: string
     sql: ${TABLE}.property_hs_all_owner_ids ;;
     description: ""
   }
 
-  dimension: property_hs_all_team_ids {
+  dimension: all_team_ids {
     type: string
     sql: ${TABLE}.property_hs_all_team_ids ;;
     description: ""
   }
 
-  dimension: property_hs_analytics_average_page_views {
+  dimension: average_page_views {
+    group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_average_page_views ;;
-    description: "the average number of pages the contact sees. This is automatically set by HubSpot for each contact."
+    description: "The average number of pages the contact sees. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: property_hs_analytics_first_referrer {
+  dimension: first_referrer {
+    group_label: "Hubspot Analytics"
     type: string
     sql: ${TABLE}.property_hs_analytics_first_referrer ;;
-    description: "the first website that referred the contact to your website. This is automatically set by HubSpot for each contact."
+    description: "The first website that referred the contact to your website. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: property_hs_analytics_first_timestamp {
+  dimension: first_timestamp {
+    group_label: "Hubspot Analytics"
     type: string
     sql: ${TABLE}.property_hs_analytics_first_timestamp ;;
-    description: "the time and date when the contact first interacted with your business (website visit, form submission, manual contact creation or import). This is automatically set by HubSpot for each contact."
+    description: "The time and date when the contact first interacted with your business (website visit, form submission, manual contact creation or import). This is automatically set by HubSpot for each contact."
   }
 
-  dimension: property_hs_analytics_first_touch_converting_campaign {
+  dimension: first_touch_converting_campaign {
+    group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_first_touch_converting_campaign ;;
     description: " the name based on the campaign ID responsible for the first touch creation of this contact. When using this property in other HubSpot tools (e.g., filters, lists), use the campaign ID instead."
   }
 
-  dimension: property_hs_analytics_first_url {
+  dimension: first_url {
+    group_label: "Hubspot Analytics"
     type: string
     sql: ${TABLE}.property_hs_analytics_first_url ;;
-    description: "the first page the contact saw on your website. This is automatically set by HubSpot for each contact."
+    description: "The first page the contact saw on your website. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: property_hs_analytics_last_referrer {
+  dimension: last_referrer {
+    group_label: "Hubspot Analytics"
     type: string
     sql: ${TABLE}.property_hs_analytics_last_referrer ;;
-    description: "the last website that referred the contact to your website. This is automatically set by HubSpot for each contact. This analytics property looks at the last page viewed, so this site can be internal or external."
+    description: "The last website that referred the contact to your website. This is automatically set by HubSpot for each contact. This analytics property looks at the last page viewed, so this site can be internal or external."
   }
 
-  dimension: property_hs_analytics_last_touch_converting_campaign {
+  dimension: last_touch_converting_campaign {
+    group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_last_touch_converting_campaign ;;
-    description: "the name based on the campaign ID responsible for the last touch creation of this contact. When using this property in other HubSpot tools (e.g., filters, lists), use the campaign ID instead."
+    description: "The name based on the campaign ID responsible for the last touch creation of this contact. When using this property in other HubSpot tools (e.g., filters, lists), use the campaign ID instead."
   }
 
-  dimension: property_hs_analytics_last_url {
+  dimension: last_url {
+    group_label: "Hubspot Analytics"
     type: string
     sql: ${TABLE}.property_hs_analytics_last_url ;;
-    description: "the last page the contact saw on your website. This is automatically set by HubSpot for each contact."
+    description: "The last page the contact saw on your website. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: property_hs_analytics_num_event_completions {
+  dimension: num_event_completions {
+    group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_num_event_completions ;;
-    description: "the sum of all events the contact has experienced. This is automatically set by HubSpot for each contact."
+    description: "The sum of all events the contact has experienced. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: property_hs_analytics_num_page_views {
+  dimension: num_page_views {
+    group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_num_page_views ;;
-    description: "the sum of all pages the contact has seen on your website. This is automatically set by HubSpot for each contact."
+    description: "The sum of all pages the contact has seen on your website. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: property_hs_analytics_num_visits {
+  dimension: num_visits {
+    group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_num_visits ;;
     description: ""
   }
 
-  dimension: property_hs_analytics_revenue {
+  dimension: revenue {
+    group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_revenue ;;
     description: "event revenue can be set on a contact using HubSpot's events tool."
   }
 
-  dimension: property_hs_analytics_source {
+  dimension: source {
+    group_label: "Hubspot Analytics"
     type: string
     sql: ${TABLE}.property_hs_analytics_source ;;
-    description: "the first known source through which the contact found your website. This is automatically set by HubSpot. The property options are not editable, but an individual's Original source value can be manually changed to any of the options."
+    description: "The first known source through which the contact found your website. This is automatically set by HubSpot. The property options are not editable, but an individual's Original source value can be manually changed to any of the options."
   }
 
-  dimension: property_hs_analytics_source_data_1 {
+  dimension: source_data_1 {
+    group_label: "Hubspot Analytics"
     type: string
     sql: ${TABLE}.property_hs_analytics_source_data_1 ;;
     description: "additional information about the source through which the contact first found your website; view some example values. This is automatically set by HubSpot and cannot be manually changed for a contact. Formerly labeled as Original source data 1."
   }
 
-  dimension: property_hs_analytics_source_data_2 {
+  dimension: source_data_2 {
+    group_label: "Hubspot Analytics"
     type: string
     sql: ${TABLE}.property_hs_analytics_source_data_2 ;;
     description: "additional information about the source through which the contact first found your website; view some example values. This is automatically set by HubSpot and cannot be changed for a contact. Formerly labeled as Original source data 2."
   }
 
-  dimension: property_hs_avatar_filemanager_key {
+  dimension: avatar_filemanager_key {
     type: string
     sql: ${TABLE}.property_hs_avatar_filemanager_key ;;
     description: ""
   }
 
-  dimension: property_hs_buying_role {
+  dimension: buying_role {
     type: string
     sql: ${TABLE}.property_hs_buying_role ;;
     description: ""
   }
 
-  dimension: property_hs_content_membership_notes {
+  dimension: content_membership_notes {
     type: string
     sql: ${TABLE}.property_hs_content_membership_notes ;;
-    description: "the notes relating to the contact's content membership."
+    description: "The notes relating to the contact's content membership."
   }
 
-  dimension: property_hs_content_membership_registration_domain_sent_to {
+  dimension: content_membership_registration_domain_sent_to {
     type: string
     sql: ${TABLE}.property_hs_content_membership_registration_domain_sent_to ;;
-    description: "the domain to which the registration invitation email for content membership was sent to."
+    description: "The domain to which the registration invitation email for content membership was sent to."
   }
 
-  dimension: property_hs_content_membership_status {
+  dimension: content_membership_status {
     type: yesno
     sql: ${TABLE}.property_hs_content_membership_status ;;
-    description: "the status of the contact's content membership."
+    description: "The status of the contact's content membership."
   }
 
-  dimension: property_hs_conversations_visitor_email {
+  dimension: conversations_visitor_email {
     type: string
     sql: ${TABLE}.property_hs_conversations_visitor_email ;;
     description: ""
   }
 
-  dimension: property_hs_email_last_email_name {
+  dimension: email_last_email_name {
     type: string
     sql: ${TABLE}.property_hs_email_last_email_name ;;
-    description: "the name of the last marketing email sent."
+    description: "The name of the last marketing email sent."
   }
 
-  dimension: property_hs_email_optout {
+  dimension: email_optout {
     type: yesno
     sql: ${TABLE}.property_hs_email_optout ;;
-    description: "indicates that the current email address has opted out from emails of the specified type."
+    description: "Indicates that the current email address has opted out from emails of the specified type."
   }
 
-  dimension: property_hs_email_optout_7720336 {
+  dimension: email_optout_7720336 {
     type: yesno
     sql: ${TABLE}.property_hs_email_optout_7720336 ;;
     description: ""
   }
 
-  dimension: property_hs_email_quarantined {
+  dimension: email_quarantined {
     type: yesno
     sql: ${TABLE}.property_hs_email_quarantined ;;
     description: "indicates that the current email address has been quarantined for anti-abuse reasons. HubSpot will not send any marketing emails to quarantined email addresses."
   }
 
-  dimension: property_hs_email_quarantined_reason {
+  dimension: email_quarantined_reason {
     type: string
     sql: ${TABLE}.property_hs_email_quarantined_reason ;;
     description: ""
   }
 
-  dimension: property_hs_emailconfirmationstatus {
+  dimension: email_confirmation_status {
     type: yesno
     sql: ${TABLE}.property_hs_emailconfirmationstatus ;;
-    description: "the status of the contact's eligibility to receive email."
+    description: "The status of the contact's eligibility to receive email."
   }
 
-  dimension: property_hs_facebookid {
+  dimension: facebookid {
+    group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_hs_facebookid ;;
     description: ""
   }
 
-  dimension: property_hs_feedback_last_nps_follow_up {
+  dimension: feedback_last_nps_follow_up {
+    group_label: "Feedback"
     type: string
     sql: ${TABLE}.property_hs_feedback_last_nps_follow_up ;;
     description: ""
   }
 
-  dimension: property_hs_feedback_last_nps_rating {
+  dimension: feedback_last_nps_rating {
+    group_label: "Feedback"
     type: string
     sql: ${TABLE}.property_hs_feedback_last_nps_rating ;;
-    description: "the last NPS survey rating that this contact gave."
+    description: "The last NPS survey rating that this contact gave."
   }
 
-  dimension: property_hs_google_click_id {
+  dimension: google_click_id {
+    group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_hs_google_click_id ;;
     description: ""
   }
 
-  dimension: property_hs_googleplusid {
+  dimension: googleplusid {
+    group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_hs_googleplusid ;;
     description: ""
   }
 
-  dimension: property_hs_ip_timezone {
+  dimension: ip_timezone {
+    group_label: "IP Info"
     type: string
     sql: ${TABLE}.property_hs_ip_timezone ;;
     description: "The timezone reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting. This property is used to determine a contact's time zone for the time zone send email feature. "
   }
 
-  dimension: property_hs_language {
+  dimension: language {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_hs_language ;;
-    description: "the contact's preferred language for communications. This might be set via import, form, or integration."
+    description: "The contact's preferred language for communications. This might be set via import, form, or integration."
   }
 
-  dimension: property_hs_lead_status {
+  dimension: lead_status {
     type: string
     sql: ${TABLE}.property_hs_lead_status ;;
-    description: "a contact and company property that indicates where a contact or company is within a buying cycle as a lead. Learn about the difference between Lead status and Lifecycle stage. "
+    description: "A contact and company property that indicates where a contact or company is within a buying cycle as a lead."
   }
 
-  dimension: property_hs_legal_basis {
+  dimension: legal_basis {
     type: string
     sql: ${TABLE}.property_hs_legal_basis ;;
     description: ""
   }
 
-  dimension: property_hs_lifecyclestage_lead_date {
+  dimension: lifecyclestage_lead_date {
     type: string
     sql: ${TABLE}.property_hs_lifecyclestage_lead_date ;;
     description: " the date that a contact's lifecycle stage changed to Lead. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: property_hs_lifecyclestage_opportunity_date {
+  dimension: lifecyclestage_opportunity_date {
     type: string
     sql: ${TABLE}.property_hs_lifecyclestage_opportunity_date ;;
-    description: "the date that a contact's lifecycle stage changed to Opportunity. This is automatically set by HubSpot for each contact."
+    description: "The date that a contact's lifecycle stage changed to Opportunity. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: property_hs_linkedinid {
+  dimension: linkedinid {
+    group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_hs_linkedinid ;;
     description: ""
   }
 
-  dimension: property_hs_marketable_reason_id {
+  dimension: marketable_reason_id {
     type: string
     sql: ${TABLE}.property_hs_marketable_reason_id ;;
     description: ""
   }
 
-  dimension: property_hs_marketable_reason_type {
+  dimension: marketable_reason_type {
     type: string
     sql: ${TABLE}.property_hs_marketable_reason_type ;;
     description: ""
   }
 
-  dimension: property_hs_marketable_status {
+  dimension: marketable_status {
     type: string
     sql: ${TABLE}.property_hs_marketable_status ;;
     description: ""
   }
 
-  dimension: property_hs_marketable_until_renewal {
+  dimension: marketable_until_renewal {
     type: string
     sql: ${TABLE}.property_hs_marketable_until_renewal ;;
     description: ""
   }
 
-  dimension: property_hs_merged_object_ids {
+  dimension: merged_object_ids {
+    hidden: yes
     type: string
     sql: ${TABLE}.property_hs_merged_object_ids ;;
     description: ""
   }
 
-  dimension: property_hs_persona {
+  dimension: persona {
     type: string
     sql: ${TABLE}.property_hs_persona ;;
-    description: "the contact's persona."
+    description: "The contact's persona. Personas are fictional, generalized characters that encompass the various needs, goals, and observed behavior patterns among your customers."
   }
 
-  dimension: property_hs_predictivecontactscore_v_2 {
+  dimension: predictivecontactscore_v_2 {
+    group_label: "Hubspot Predictive Fields"
     type: number
     sql: ${TABLE}.property_hs_predictivecontactscore_v_2 ;;
-    description: "the probability that a contact will become a customer within the next 90 days. This score is based on demographic information in standard contact properties and interactions logged in the contact timeline such as tracked email clicks and meetings booked."
+    description: "The probability that a contact will become a customer within the next 90 days. This score is based on demographic information in standard contact properties and interactions logged in the contact timeline such as tracked email clicks and meetings booked."
   }
 
-  dimension: property_hs_predictivecontactscorebucket {
+  dimension: predictivecontactscorebucket {
+    group_label: "Hubspot Predictive Fields"
     type: string
     sql: ${TABLE}.property_hs_predictivecontactscorebucket ;;
     description: ""
   }
 
-  dimension: property_hs_predictivescoringtier {
+  dimension: predictivescoringtier {
+    group_label: "Hubspot Predictive Fields"
     type: string
     sql: ${TABLE}.property_hs_predictivescoringtier ;;
-    description: "a ranking system of contacts evenly assigned into four tiers. Contacts in tier one are more likely to become customers than contacts in tier four."
+    description: "A ranking system of contacts evenly assigned into four tiers. Contacts in tier one are more likely to become customers than contacts in tier four."
   }
 
-  dimension: property_hs_social_facebook_clicks {
+  dimension: social_facebook_clicks {
+    group_label: "Social Media"
     type: number
     sql: ${TABLE}.property_hs_social_facebook_clicks ;;
     description: ""
   }
 
-  dimension: property_hs_social_google_plus_clicks {
+  dimension: social_google_plus_clicks {
+    group_label: "Social Media"
     type: number
     sql: ${TABLE}.property_hs_social_google_plus_clicks ;;
     description: ""
   }
 
-  dimension: property_hs_social_linkedin_clicks {
+  dimension: social_linkedin_clicks {
+    group_label: "Social Media"
     type: number
     sql: ${TABLE}.property_hs_social_linkedin_clicks ;;
     description: ""
   }
 
-  dimension: property_hs_social_num_broadcast_clicks {
+  dimension: social_num_broadcast_clicks {
+    group_label: "Social Media"
     type: number
     sql: ${TABLE}.property_hs_social_num_broadcast_clicks ;;
     description: ""
   }
 
-  dimension: property_hs_social_twitter_clicks {
+  dimension: social_twitter_clicks {
+    group_label: "Social Media"
     type: number
     sql: ${TABLE}.property_hs_social_twitter_clicks ;;
     description: ""
   }
 
-  dimension: property_hs_twitterid {
+  dimension: twitterid {
+    group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_hs_twitterid ;;
     description: ""
   }
 
-  dimension: property_hubspot_owner_assigneddate {
+  dimension: hubspot_owner_assigneddate {
     type: string
     sql: ${TABLE}.property_hubspot_owner_assigneddate ;;
-    description: "the most recent date that a contact owner was assigned to a contact. This is set automatically by HubSpot and can be used for segmentation and reporting."
+    description: "The most recent date that a contact owner was assigned to a contact. This is set automatically by HubSpot and can be used for segmentation and reporting."
   }
 
-  dimension: property_hubspot_owner_id {
+  dimension: hubspot_owner_id {
     type: number
     sql: ${TABLE}.property_hubspot_owner_id ;;
-    description: "the owner of a contact. This can be any HubSpot user or Salesforce integration user and can be set manually or via Workflows. You can assign additional users to a contact record by creating a custom HubSpot user field type property."
+    description: "The owner of a contact. This can be any HubSpot user or Salesforce integration user and can be set manually or via Workflows. You can assign additional users to a contact record by creating a custom HubSpot user field type property."
   }
 
-  dimension: property_hubspot_team_id {
+  dimension: hubspot_team_id {
     type: number
     sql: ${TABLE}.property_hubspot_team_id ;;
-    description: "the team assigned to the contact owner for the contact."
+    description: "The team assigned to the contact owner for the contact."
   }
 
-  dimension: property_industry {
+  dimension: industry {
     type: string
     sql: ${TABLE}.property_industry ;;
-    description: " the contact's industry."
+    description: "The contact's industry."
   }
 
-  dimension: property_ip_city {
+  dimension: ip_city {
+    group_label: "IP Info"
     type: string
     sql: ${TABLE}.property_ip_city ;;
-    description: "the city reported by the contact's IP address when they fill out a form. This is automatically set by HubSpot and can be used for segmentation and reporting."
+    description: "The city reported by the contact's IP address when they fill out a form. This is automatically set by HubSpot and can be used for segmentation and reporting."
   }
 
-  dimension: property_ip_country {
+  dimension: ip_country {
+    group_label: "IP Info"
     type: string
     sql: ${TABLE}.property_ip_country ;;
-    description: "the country reported by the contact's IP address when they fill out a form. This is automatically set by HubSpot and can be used for segmentation and reporting."
+    description: "The country reported by the contact's IP address when they fill out a form. This is automatically set by HubSpot and can be used for segmentation and reporting."
   }
 
-  dimension: property_ip_country_code {
+  dimension: ip_country_code {
+    group_label: "IP Info"
     type: number
     sql: ${TABLE}.property_ip_country_code ;;
     description: " the country code reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting."
   }
 
-  dimension: property_ip_latlon {
+  dimension: ip_latlon {
+    group_label: "IP Info"
     type: number
     sql: ${TABLE}.property_ip_latlon ;;
     description: ""
   }
 
-  dimension: property_ip_state {
+  dimension: ip_state {
+    group_label: "IP Info"
     type: string
     sql: ${TABLE}.property_ip_state ;;
-    description: "the state or region reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting."
+    description: "The state or region reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting."
   }
 
-  dimension: property_ip_state_code {
+  dimension: ip_state_code {
+    group_label: "IP Info"
     type: number
     sql: ${TABLE}.property_ip_state_code ;;
-    description: "the state code or region code reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting."
+    description: "The state code or region code reported by a contact's IP address. This is automatically set by HubSpot and can be used for segmentation and reporting."
   }
 
-  dimension: property_ip_zipcode {
+  dimension: ip_zipcode {
+    group_label: "IP Info"
     type: string
     sql: ${TABLE}.property_ip_zipcode ;;
     description: ""
   }
 
-  dimension: property_job_function {
+  dimension: job_function {
     type: string
     sql: ${TABLE}.property_job_function ;;
-    description: "the job function as provided through a lead ad form, set by the ads tool."
+    description: "The job function as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: property_jobtitle {
+  dimension: jobtitle {
     type: string
     sql: ${TABLE}.property_jobtitle ;;
-    description: "the contact's job title."
+    description: "The contact's job title."
   }
 
-  dimension: property_lastmodifieddate {
+  dimension: lastmodifieddate {
     type: string
     sql: ${TABLE}.property_lastmodifieddate ;;
-    description: "the last date and time that a property related to this contact was modified."
+    description: "The last date and time that a property related to this contact was modified."
   }
 
-  dimension: property_lastname {
+  dimension: lastname {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_lastname ;;
-    description: "the contact's last name."
+    description: "The contact's last name."
   }
 
-  dimension: property_lifecyclestage {
+  dimension: lifecyclestage {
     type: string
     sql: ${TABLE}.property_lifecyclestage ;;
-    description: "a property used to indicate at what point the contact is within the marketing/sales process. It can be set through imports, forms, workflows, or manually on a per contact basis."
+    description: "A property used to indicate at what point the contact is within the marketing/sales process. It can be set through imports, forms, workflows, or manually on a per contact basis."
   }
 
-  dimension: property_linkedinbio {
+  dimension: linkedinbio {
+    group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_linkedinbio ;;
     description: ""
   }
 
-  dimension: property_marital_status {
+  dimension: marital_status {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_marital_status ;;
-    description: "the marital status as provided through a lead ad form, set by the ads tool."
+    description: "The marital status as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: property_message {
+  dimension: message {
     type: string
     sql: ${TABLE}.property_message ;;
-    description: "a default property to be used for any message or comments a contact may want to leave on a form."
+    description: "A default property to be used for any message or comments a contact may want to leave on a form."
   }
 
-  dimension: property_military_status {
+  dimension: military_status {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_military_status ;;
-    description: "the military status as provided through a lead ad form, set by the ads tool."
+    description: "The military status as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: property_mobilephone {
+  dimension: mobilephone {
+    group_label: "Contact Methods"
     type: string
     sql: ${TABLE}.property_mobilephone ;;
-    description: "the contact's mobile phone number."
+    description: "The contact's mobile phone number."
   }
 
-  dimension: property_num_associated_deals {
+  dimension: num_associated_deals {
     type: number
     sql: ${TABLE}.property_num_associated_deals ;;
-    description: "the total number of all associated deals."
+    description: "The total number of all associated deals."
   }
 
-  dimension: property_numemployees {
+  dimension: numemployees {
+    group_label: "Company Info"
     type: number
     sql: ${TABLE}.property_numemployees ;;
-    description: "the number of company employees."
+    description: "The number of company employees."
   }
 
-  dimension: property_owneremail {
+  dimension: owner_email {
+    group_label: "Owner"
     type: string
     sql: ${TABLE}.property_owneremail ;;
     description: ""
   }
 
-  dimension: property_ownername {
+  dimension: owner_name {
+    group_label: "Owner"
     type: string
     sql: ${TABLE}.property_ownername ;;
     description: ""
   }
 
-  dimension: property_phone {
+  dimension: phone {
+    group_label: "Contact Methods"
     type: string
     sql: ${TABLE}.property_phone ;;
-    description: "the contact's primary phone number."
+    description: "The contact's primary phone number."
   }
 
-  dimension: property_photo {
+  dimension: photo {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_photo ;;
     description: ""
   }
 
-  dimension: property_relationship_status {
+  dimension: relationship_status {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_relationship_status ;;
-    description: "the relationship status as provided through a lead ad form, set by the ads tool."
+    description: "The relationship status as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: property_salutation {
+  dimension: salutation {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_salutation ;;
-    description: "the title used to address the contact."
+    description: "The title used to address the contact."
   }
 
-  dimension: property_school {
+  dimension: school {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_school ;;
-    description: "the school as provided through a lead ad form, set by the ads tool."
+    description: "The school as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: property_seniority {
+  dimension: seniority {
+    group_label: "Company Info"
     type: string
     sql: ${TABLE}.property_seniority ;;
-    description: "the seniority in the company as provided through a lead ad form, set by the ads tool."
+    description: "The seniority in the company as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: property_start_date {
+  dimension: start_date {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_start_date ;;
-    description: "the start date of education as provided through a lead ad form, set by the ads tool."
+    description: "The start date of education as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: property_state {
+  dimension: state {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_state ;;
-    description: "the contact's state of residence."
+    description: "The contact's state of residence."
   }
 
-  dimension: property_twitterbio {
+  dimension: twitterbio {
+    group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_twitterbio ;;
     description: ""
   }
 
-  dimension: property_twitterhandle {
+  dimension: twitterhandle {
+    group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_twitterhandle ;;
     description: ""
   }
 
-  dimension: property_twitterprofilephoto {
+  dimension: twitterprofilephoto {
+    group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_twitterprofilephoto ;;
     description: ""
   }
 
-  dimension: property_website {
+  dimension: website {
+    group_label: "Company Info"
     type: string
     sql: ${TABLE}.property_website ;;
-    description: "the contact's company website."
+    description: "The contact's company website."
   }
 
-  dimension: property_work_email {
+  dimension: work_email {
+    group_label: "Contact Methods"
     type: string
     sql: ${TABLE}.property_work_email ;;
-    description: "the work email as provided through a lead ad form, set by the ads tool."
+    description: "The work email as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: property_zip {
+  dimension: zip {
+    group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_zip ;;
-    description: "the contact's zip code."
+    description: "The contact's zip code."
   }
 
   measure: count {
     type: count
-    drill_fields: [id, property_firstname, property_lastname, property_hs_email_last_email_name, property_ownername]
+    drill_fields: [contact_drills*]
+  }
+
+  measure: count_last_touch {
+    type: sum
+    sql: ${last_touch_converting_campaign} ;;
+    drill_fields: [contact_drills*]
+  }
+
+  set: contact_drills {
+    fields: [id, firstname, lastname, email_last_email_name, ownername]
   }
 }

@@ -22,6 +22,7 @@ view: form {
   }
 
   dimension: guid {
+    primary_key: yes
     type: number
     value_format_name: id
     sql: ${TABLE}.guid ;;

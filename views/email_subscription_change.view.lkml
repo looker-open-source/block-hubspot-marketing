@@ -4,7 +4,7 @@ view: email_subscription_change {
   dimension: pk {
     hidden: yes
     primary_key: yes
-    sql: CONCAT(CAST(${recipient} AS STRING), CAST(${timestamp} AS STRING)) ;;
+    sql: CONCAT(CAST(${recipient} AS STRING), CAST(${timestamp_raw} AS STRING)) ;;
   }
 
   dimension: caused_by_event_id {
@@ -49,14 +49,51 @@ view: email_subscription_change {
     description: "An ID referencing the email subscription associated with the change."
   }
 
-  dimension: timestamp {
-    type: number
-    sql: ${TABLE}.timestamp ;;
+  dimension_group: timestamp {
+    type: time
+    datatype: datetime
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.timestamp) ;;
     description: "The timestamp (in milliseconds since epoch) when this change occurred. If 'causedByEvent' is present, this will be absent."
   }
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [drills*]
+  }
+
+  measure: count_subscribe_events {
+    type: count
+    filters: {
+      field: change
+      value: "SUBSCRIBED"
+    }
+    drill_fields: [drills*]
+  }
+
+  measure: count_unsubscribe_events {
+    type: count
+    filters: {
+      field: change
+      value: "UNSUBSCRIBED"
+    }
+    drill_fields: [drills*]
+  }
+
+  measure: count_spam_report_events {
+    type: count
+    filters: {
+      field: change
+      value: "REPORTED_SPAM"
+    }
+    drill_fields: [drills*]
+  }
+
+  set: drills {
+    fields: [caused_by_event_id
+            , change_type
+            , change
+            , source
+            , subscription_id
+            , portal_id]
   }
 }
