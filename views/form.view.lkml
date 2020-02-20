@@ -27,8 +27,10 @@ view: form {
     sql: ${TABLE}.guid ;;
   }
 
+  # This may be a deprecated field for some users
   dimension: lead_nurturing_campaign_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.lead_nurturing_campaign_id ;;
   }
 
