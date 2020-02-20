@@ -27,7 +27,7 @@ view: form {
     sql: ${TABLE}.guid ;;
   }
 
-  # This may be a deprecated field for some users
+  # Deprecated by Hubspot, this field may not be available for all users
   dimension: lead_nurturing_campaign_id {
     type: number
     hidden: yes
