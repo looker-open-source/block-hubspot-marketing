@@ -46,9 +46,8 @@ view: email_event {
       fiscal_quarter_of_year,
       fiscal_year
     ]
-    sql: PARSE_TIMESTAMP('%m-%d-%Y', SUBSTR(${TABLE}.created, 0, 10)) ;;
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.created)  ;;
     description: "The timestamp (in milliseconds since epoch) when this event was created."
-    # New description: Date
     datatype: datetime
   }
 
