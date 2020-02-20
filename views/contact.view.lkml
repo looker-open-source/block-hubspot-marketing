@@ -591,6 +591,16 @@ view: contact {
 
   measure: count {
     type: count
-    drill_fields: [id, property_firstname, property_lastname, property_hs_email_last_email_name, property_ownername]
+    drill_fields: [contact_drills*]
+  }
+
+  measure: count_last_touch {
+    type: sum
+    sql: ${property_hs_analytics_last_touch_converting_campaign} ;;
+    drill_fields: [contact_drills*]
+  }
+
+  set: contact_drills {
+    fields: [id, property_firstname, property_lastname, property_hs_email_last_email_name, property_ownername]
   }
 }
