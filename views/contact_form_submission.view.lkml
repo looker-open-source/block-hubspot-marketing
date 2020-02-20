@@ -68,4 +68,9 @@ view: contact_form_submission {
     type: count
     drill_fields: [contact_id, timestamp_raw]
   }
+
+  measure: conversions {
+    type: sum
+    sql: ${conversion_id} ;;
+  }
 }
