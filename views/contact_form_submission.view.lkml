@@ -75,4 +75,11 @@ view: contact_form_submission {
     type: count_distinct
     sql: ${conversion_id} ;;
   }
+
+  measure: conversion_rate {
+    description: "Percent of sent emails that lead to a conversion."
+    type: number
+    sql: ${contact_form_submission.conversions}/${email_event_sent.count};;
+    value_format_name: percent_1
+  }
 }

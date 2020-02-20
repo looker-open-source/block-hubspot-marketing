@@ -55,7 +55,8 @@ view: email_event_open {
     label: "Opened Percent"
     description: "Percent of sent emails that were opened."
     type: number
-    sql: ${count}/${email_event_sent.count} ;;
+    sql: ${email_event_open.count}/${email_event_sent.count} ;;
     drill_fields: [id]
+    value_format_name: percent_1
   }
 }
