@@ -51,7 +51,7 @@ view: contact {
     description: "The contact's country of residence. This might be set via import, form, or integration"
   }
 
-  dimension_group: property_createdate {
+  dimension_group: created {
     type: time
     timeframes: [
       raw,
@@ -132,7 +132,7 @@ view: contact {
     description: "The field of study as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension_group: property_first_deal_created_date {
+  dimension_group: first_deal_created_date {
     type: time
     timeframes: [
       raw,
@@ -172,18 +172,21 @@ view: contact {
   }
 
   dimension: all_accessible_team_ids {
+    hidden: yes
     type: string
     sql: ${TABLE}.property_hs_all_accessible_team_ids ;;
     description: ""
   }
 
   dimension: all_owner_ids {
+    hidden: yes
     type: string
     sql: ${TABLE}.property_hs_all_owner_ids ;;
     description: ""
   }
 
   dimension: all_team_ids {
+    hidden: yes
     type: string
     sql: ${TABLE}.property_hs_all_team_ids ;;
     description: ""
@@ -295,72 +298,84 @@ view: contact {
   }
 
   dimension: avatar_filemanager_key {
+    hidden: yes
     type: string
     sql: ${TABLE}.property_hs_avatar_filemanager_key ;;
     description: ""
   }
 
   dimension: buying_role {
+    group_label: "Sales Lifecycle"
     type: string
     sql: ${TABLE}.property_hs_buying_role ;;
     description: ""
   }
 
   dimension: content_membership_notes {
+    group_label: "Content Membership"
     type: string
     sql: ${TABLE}.property_hs_content_membership_notes ;;
     description: "The notes relating to the contact's content membership."
   }
 
   dimension: content_membership_registration_domain_sent_to {
+    group_label: "Content Membership"
     type: string
     sql: ${TABLE}.property_hs_content_membership_registration_domain_sent_to ;;
     description: "The domain to which the registration invitation email for content membership was sent to."
   }
 
   dimension: content_membership_status {
+    group_label: "Content Membership"
     type: yesno
     sql: ${TABLE}.property_hs_content_membership_status ;;
     description: "The status of the contact's content membership."
   }
 
   dimension: conversations_visitor_email {
+    group_label: "Email Settings"
     type: string
     sql: ${TABLE}.property_hs_conversations_visitor_email ;;
     description: ""
   }
 
   dimension: email_last_email_name {
+    group_label: "Email Settings"
     type: string
     sql: ${TABLE}.property_hs_email_last_email_name ;;
     description: "The name of the last marketing email sent."
   }
 
   dimension: email_optout {
+    group_label: "Email Settings"
     type: yesno
     sql: ${TABLE}.property_hs_email_optout ;;
     description: "Indicates that the current email address has opted out from emails of the specified type."
   }
 
   dimension: email_optout_7720336 {
+    group_label: "Email Settings"
     type: yesno
     sql: ${TABLE}.property_hs_email_optout_7720336 ;;
     description: ""
   }
 
   dimension: email_quarantined {
+    group_label: "Email Settings"
     type: yesno
     sql: ${TABLE}.property_hs_email_quarantined ;;
     description: "indicates that the current email address has been quarantined for anti-abuse reasons. HubSpot will not send any marketing emails to quarantined email addresses."
   }
 
   dimension: email_quarantined_reason {
+    group_label: "Email Settings"
     type: string
     sql: ${TABLE}.property_hs_email_quarantined_reason ;;
     description: ""
   }
 
   dimension: email_confirmation_status {
+    group_label: "Email Settings"
     type: yesno
     sql: ${TABLE}.property_hs_emailconfirmationstatus ;;
     description: "The status of the contact's eligibility to receive email."
@@ -416,6 +431,7 @@ view: contact {
   }
 
   dimension: lead_status {
+    group_label: "Sales Lifecycle"
     type: string
     sql: ${TABLE}.property_hs_lead_status ;;
     description: "A contact and company property that indicates where a contact or company is within a buying cycle as a lead."
@@ -424,16 +440,18 @@ view: contact {
   dimension: legal_basis {
     type: string
     sql: ${TABLE}.property_hs_legal_basis ;;
-    description: ""
+    description: "Under the General Data Protection Regulation (GDPR), companies need a lawful reason to use and process contact data and must keep records of consent and evidence of other lawful purposes of processing."
   }
 
   dimension: lifecyclestage_lead_date {
+    group_label: "Sales Lifecycle"
     type: string
     sql: ${TABLE}.property_hs_lifecyclestage_lead_date ;;
-    description: " the date that a contact's lifecycle stage changed to Lead. This is automatically set by HubSpot for each contact."
+    description: "The date that a contact's lifecycle stage changed to Lead. This is automatically set by HubSpot for each contact."
   }
 
   dimension: lifecyclestage_opportunity_date {
+    group_label: "Sales Lifecycle"
     type: string
     sql: ${TABLE}.property_hs_lifecyclestage_opportunity_date ;;
     description: "The date that a contact's lifecycle stage changed to Opportunity. This is automatically set by HubSpot for each contact."
@@ -447,24 +465,28 @@ view: contact {
   }
 
   dimension: marketable_reason_id {
+    group_label: "Marketable"
     type: string
     sql: ${TABLE}.property_hs_marketable_reason_id ;;
     description: ""
   }
 
   dimension: marketable_reason_type {
+    group_label: "Marketable"
     type: string
     sql: ${TABLE}.property_hs_marketable_reason_type ;;
     description: ""
   }
 
   dimension: marketable_status {
+    group_label: "Marketable"
     type: string
     sql: ${TABLE}.property_hs_marketable_status ;;
     description: ""
   }
 
   dimension: marketable_until_renewal {
+    group_label: "Marketable"
     type: string
     sql: ${TABLE}.property_hs_marketable_until_renewal ;;
     description: ""
@@ -547,24 +569,28 @@ view: contact {
   }
 
   dimension: hubspot_owner_assigneddate {
+    group_label: "Owner"
     type: string
     sql: ${TABLE}.property_hubspot_owner_assigneddate ;;
     description: "The most recent date that a contact owner was assigned to a contact. This is set automatically by HubSpot and can be used for segmentation and reporting."
   }
 
   dimension: hubspot_owner_id {
+    group_label: "Owner"
     type: number
     sql: ${TABLE}.property_hubspot_owner_id ;;
     description: "The owner of a contact. This can be any HubSpot user or Salesforce integration user and can be set manually or via Workflows. You can assign additional users to a contact record by creating a custom HubSpot user field type property."
   }
 
   dimension: hubspot_team_id {
+    group_label: "Owner"
     type: number
     sql: ${TABLE}.property_hubspot_team_id ;;
     description: "The team assigned to the contact owner for the contact."
   }
 
   dimension: industry {
+    group_label: "Company Info"
     type: string
     sql: ${TABLE}.property_industry ;;
     description: "The contact's industry."
@@ -620,20 +646,34 @@ view: contact {
   }
 
   dimension: job_function {
+    group_label: "Company Info"
     type: string
     sql: ${TABLE}.property_job_function ;;
     description: "The job function as provided through a lead ad form, set by the ads tool."
   }
 
   dimension: jobtitle {
+    group_label: "Company Info"
     type: string
     sql: ${TABLE}.property_jobtitle ;;
     description: "The contact's job title."
   }
 
-  dimension: lastmodifieddate {
-    type: string
-    sql: ${TABLE}.property_lastmodifieddate ;;
+  dimension_group: last_modified_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_lastmodifieddate) ;;
     description: "The last date and time that a property related to this contact was modified."
   }
 
@@ -645,6 +685,7 @@ view: contact {
   }
 
   dimension: lifecyclestage {
+    group_label: "Sales Lifecycle"
     type: string
     sql: ${TABLE}.property_lifecyclestage ;;
     description: "A property used to indicate at what point the contact is within the marketing/sales process. It can be set through imports, forms, workflows, or manually on a per contact basis."
@@ -685,12 +726,13 @@ view: contact {
   }
 
   dimension: num_associated_deals {
+    group_label: "Sales Lifecycle"
     type: number
     sql: ${TABLE}.property_num_associated_deals ;;
     description: "The total number of all associated deals."
   }
 
-  dimension: numemployees {
+  dimension: num_employees {
     group_label: "Company Info"
     type: number
     sql: ${TABLE}.property_numemployees ;;
@@ -821,6 +863,6 @@ view: contact {
   }
 
   set: contact_drills {
-    fields: [id, firstname, lastname, email_last_email_name, ownername]
+    fields: [id, firstname, lastname, email_last_email_name, owner_name]
   }
 }
