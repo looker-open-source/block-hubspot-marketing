@@ -43,6 +43,11 @@ explore: contact {
   join: email_campaign {
     sql_on: ${email_event.email_campaign_id} = ${email_campaign.id} ;;
   }
+  join: campaign_stats {
+    sql_on: ${email_event.created_raw} = ${campaign_stats.created_raw} ;;
+    relationship: one_to_one
+    type: full_outer
+  }
   join: email_subscription_change {
     sql_on: ${email_event.id} = ${email_subscription_change.caused_by_event_id} ;;
   }
