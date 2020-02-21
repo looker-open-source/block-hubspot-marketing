@@ -79,6 +79,11 @@ view: email_subscription_change {
     drill_fields: [drills*]
   }
 
+  measure: net_subscription_events {
+    type: number
+    sql: ${count_subscribe_events} - ${count_unsubscribe_events} ;;
+  }
+
   measure: count_spam_report_events {
     type: count
     filters: {

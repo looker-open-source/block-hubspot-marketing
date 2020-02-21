@@ -16,7 +16,7 @@ view: contact {
     description: "The contact's street address, including apartment or unit #"
   }
 
-  dimension: annualrevenue {
+  dimension: annual_revenue {
     group_label: "Company Info"
     type: number
     sql: ${TABLE}.property_annualrevenue ;;
@@ -150,11 +150,19 @@ view: contact {
     description: "The create date of the first deal a contact is associated to."
   }
 
-  dimension: firstname {
+  dimension: first_name {
     group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_firstname ;;
     description: "The contact's first name."
+  }
+
+  dimension: full_name {
+    group_label: "Personal Info"
+    type: string
+    sql: CONCAT(${first_name}, ' ', ${last_name}) ;;
+    description: "The contact's full name."
+    required_fields: [id]
   }
 
   dimension: gender {
@@ -192,7 +200,8 @@ view: contact {
     description: ""
   }
 
-  dimension: average_page_views {
+  dimension: average_page_views { # Use measure "Average Page Views"
+    hidden: yes
     group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_average_page_views ;;
@@ -248,21 +257,24 @@ view: contact {
     description: "The last page the contact saw on your website. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: num_event_completions {
+  dimension: num_event_completions { # Use measure "Total Events Completed"
+    hidden: yes
     group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_num_event_completions ;;
     description: "The sum of all events the contact has experienced. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: num_page_views {
+  dimension: num_page_views { # Use measure "Total Page Views"
+    hidden: yes
     group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_num_page_views ;;
     description: "The sum of all pages the contact has seen on your website. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: num_visits {
+  dimension: num_visits { # Use measure "Total Interaction Events"
+    hidden: yes
     group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_num_visits ;;
@@ -273,7 +285,7 @@ view: contact {
     group_label: "Hubspot Analytics"
     type: number
     sql: ${TABLE}.property_hs_analytics_revenue ;;
-    description: "event revenue can be set on a contact using HubSpot's events tool."
+    description: "Event revenue can be set on a contact using HubSpot's events tool."
   }
 
   dimension: source {
@@ -381,7 +393,7 @@ view: contact {
     description: "The status of the contact's eligibility to receive email."
   }
 
-  dimension: facebookid {
+  dimension: facebook_id {
     group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_hs_facebookid ;;
@@ -409,7 +421,7 @@ view: contact {
     description: ""
   }
 
-  dimension: googleplusid {
+  dimension: google_plus_id {
     group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_hs_googleplusid ;;
@@ -443,21 +455,45 @@ view: contact {
     description: "Under the General Data Protection Regulation (GDPR), companies need a lawful reason to use and process contact data and must keep records of consent and evidence of other lawful purposes of processing."
   }
 
-  dimension: lifecyclestage_lead_date {
+  dimension_group: lifecycle_stage_lead_date {
     group_label: "Sales Lifecycle"
-    type: string
-    sql: ${TABLE}.property_hs_lifecyclestage_lead_date ;;
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_hs_lifecyclestage_lead_date)  ;;
     description: "The date that a contact's lifecycle stage changed to Lead. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: lifecyclestage_opportunity_date {
+  dimension_group: lifecycle_stage_opportunity_date {
     group_label: "Sales Lifecycle"
-    type: string
-    sql: ${TABLE}.property_hs_lifecyclestage_opportunity_date ;;
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_hs_lifecyclestage_opportunity_date) ;;
     description: "The date that a contact's lifecycle stage changed to Opportunity. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: linkedinid {
+  dimension: linkedin_id {
     group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_hs_linkedinid ;;
@@ -505,21 +541,21 @@ view: contact {
     description: "The contact's persona. Personas are fictional, generalized characters that encompass the various needs, goals, and observed behavior patterns among your customers."
   }
 
-  dimension: predictivecontactscore_v_2 {
+  dimension: predictive_contact_score_v_2 {
     group_label: "Hubspot Predictive Fields"
     type: number
     sql: ${TABLE}.property_hs_predictivecontactscore_v_2 ;;
     description: "The probability that a contact will become a customer within the next 90 days. This score is based on demographic information in standard contact properties and interactions logged in the contact timeline such as tracked email clicks and meetings booked."
   }
 
-  dimension: predictivecontactscorebucket {
+  dimension: predictive_contact_score_bucket {
     group_label: "Hubspot Predictive Fields"
     type: string
     sql: ${TABLE}.property_hs_predictivecontactscorebucket ;;
     description: ""
   }
 
-  dimension: predictivescoringtier {
+  dimension: predictive_scoring_tier {
     group_label: "Hubspot Predictive Fields"
     type: string
     sql: ${TABLE}.property_hs_predictivescoringtier ;;
@@ -561,7 +597,7 @@ view: contact {
     description: ""
   }
 
-  dimension: twitterid {
+  dimension: twitter_id {
     group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_hs_twitterid ;;
@@ -652,7 +688,7 @@ view: contact {
     description: "The job function as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension: jobtitle {
+  dimension: job_title {
     group_label: "Company Info"
     type: string
     sql: ${TABLE}.property_jobtitle ;;
@@ -677,21 +713,21 @@ view: contact {
     description: "The last date and time that a property related to this contact was modified."
   }
 
-  dimension: lastname {
+  dimension: last_name {
     group_label: "Personal Info"
     type: string
     sql: ${TABLE}.property_lastname ;;
     description: "The contact's last name."
   }
 
-  dimension: lifecyclestage {
+  dimension: lifecycle_stage {
     group_label: "Sales Lifecycle"
     type: string
     sql: ${TABLE}.property_lifecyclestage ;;
     description: "A property used to indicate at what point the contact is within the marketing/sales process. It can be set through imports, forms, workflows, or manually on a per contact basis."
   }
 
-  dimension: linkedinbio {
+  dimension: linkedin_bio {
     group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_linkedinbio ;;
@@ -809,21 +845,21 @@ view: contact {
     description: "The contact's state of residence."
   }
 
-  dimension: twitterbio {
+  dimension: twitter_bio {
     group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_twitterbio ;;
     description: ""
   }
 
-  dimension: twitterhandle {
+  dimension: twitter_handle {
     group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_twitterhandle ;;
     description: ""
   }
 
-  dimension: twitterprofilephoto {
+  dimension: twitter_profile_photo {
     group_label: "Social Media"
     type: string
     sql: ${TABLE}.property_twitterprofilephoto ;;
@@ -862,7 +898,28 @@ view: contact {
     drill_fields: [contact_drills*]
   }
 
+  measure: average_page_views_m {
+    label: "Average Page Views"
+    type: average
+    sql: ${average_page_views} ;;
+  }
+
+  measure: total_page_views {
+    type: sum
+    sql: ${num_page_views} ;;
+  }
+
+  measure: total_events_completed {
+    type: sum
+    sql: ${num_event_completions} ;;
+  }
+
+  measure: total_visits {
+    type: sum
+    sql: ${num_visits} ;;
+  }
+
   set: contact_drills {
-    fields: [id, firstname, lastname, email_last_email_name, owner_name]
+    fields: [id, first_name, last_name, email_last_email_name, owner_name]
   }
 }
