@@ -93,6 +93,20 @@ view: email_subscription_change {
     drill_fields: [drills*]
   }
 
+  measure: unsubribe_rate {
+    type: number
+    description: "Number of Unsubscibe Events / Number of Sent Emails"
+    sql: ${count_unsubscribe_events} / ${email_event_sent.count};;
+    value_format_name: percent_1
+  }
+
+  measure: subribe_rate {
+    type: number
+    description: "Number of Subscibe Events / Number of Sent Emails"
+    sql: ${net_subscription_events} / ${email_event_sent.count};;
+    value_format_name: percent_1
+  }
+
   set: drills {
     fields: [caused_by_event_id
             , change_type
