@@ -25,7 +25,7 @@ explore: contact {
     sql_on: ${contact.id} = ${email_event.recipient} ;;
   }
   join: sequences {
-    #fields: [touch_sequence]
+    fields: [touch_sequence]
     sql_on: ${email_event.recipient} = ${sequences.contact_id} AND
     ${email_event.created_date} = ${sequences.email_date_raw};;
   }
