@@ -74,6 +74,7 @@ view: contact_form_submission {
   measure: conversions {
     type: count_distinct
     sql: ${conversion_id} ;;
+    drill_fields: [contact_id, timestamp_raw]
   }
 
   measure: conversion_rate {
