@@ -82,5 +82,7 @@ view: contact_form_submission {
     type: number
     sql: ${contact_form_submission.conversions}/${email_event_sent.count};;
     value_format_name: percent_1
+    drill_fields: [contact_id, timestamp_raw]
   }
+
 }

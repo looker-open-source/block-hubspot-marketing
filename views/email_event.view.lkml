@@ -111,6 +111,11 @@ view: email_event {
     drill_fields: [id, app_name, email_campaign.app_name, email_campaign.name, email_campaign.id]
   }
 
+  measure: undelievered_count {
+    type: number
+    sql: ${email_event_bounce.count} + ${email_event_dropped.count} + ${email_event_deferred.count} ;;
+  }
+
   measure: first_touch {
     type: date
     sql: MIN(${created_raw}) ;;
