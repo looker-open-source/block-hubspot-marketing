@@ -28,6 +28,10 @@ view: email_campaign {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
+    link: {
+      label: "Campaign Lookup Dashboard"
+      url: "/dashboards/hubspot-marketing::campaign_lookup?Campaign Name={{ value }}"
+    }
   }
 
   dimension: num_included {
