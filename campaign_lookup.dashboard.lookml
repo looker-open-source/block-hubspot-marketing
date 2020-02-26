@@ -4,7 +4,7 @@
   elements:
   - title: Campaign Name
     name: Campaign Name
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [email_campaign.name]
@@ -58,7 +58,7 @@
     height: 2
   - title: Avg Conversion Rate
     name: Avg Conversion Rate
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [campaign_stats.average_conversion_rate]
@@ -83,7 +83,7 @@
     height: 3
   - title: Campaign Performance Vs All Campaigns
     name: Campaign Performance Vs All Campaigns
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: looker_column
     fields: [contact_form_submission.conversion_rate, email_event_delivered.delivered_pct,
@@ -167,7 +167,7 @@
     height: 9
   - title: Avg Open Rate
     name: Avg Open Rate
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [campaign_stats.average_open_rate]
@@ -192,7 +192,7 @@
     height: 3
   - title: Avg Delivery Rate
     name: Avg Delivery Rate
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [campaign_stats.average_delivery_rate]
@@ -217,7 +217,7 @@
     height: 3
   - title: Sent
     name: Sent
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [email_event_sent.count]
@@ -271,7 +271,7 @@
     height: 3
   - title: Delivered
     name: Delivered
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [email_event_dropped.count]
@@ -325,7 +325,7 @@
     height: 3
   - title: Opened
     name: Opened
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [email_event_open.count]
@@ -379,7 +379,7 @@
     height: 3
   - title: Conversions
     name: Conversions
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [contact_form_submission.conversions]
@@ -436,7 +436,7 @@
     height: 3
   - title: Campaign Performance Over Time
     name: Campaign Performance Over Time
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: looker_area
     fields: [email_event.created_date, email_event_sent.count, email_event_open.count,
@@ -503,7 +503,7 @@
     height: 8
   - title: Subscription Changes
     name: Subscription Changes
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: looker_line
     fields: [email_event.created_week, email_subscription_change.subribe_rate, email_subscription_change.unsubribe_rate]
@@ -596,7 +596,7 @@
     height: 9
   - title: All Campaigns
     name: All Campaigns
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: looker_grid
     fields: [email_campaign.name, email_campaign.subject, email_campaign.type, contact_form_submission.conversions,
@@ -687,7 +687,7 @@
     height: 8
   - title: Sent to Spam Events
     name: Sent to Spam Events
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: looker_grid
     fields: [email_event_spam_report.count, contact_list.name]
@@ -767,7 +767,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     listens_to_filters: []
     field: email_campaign.name
@@ -777,7 +777,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     listens_to_filters: []
     field: email_event.created_date

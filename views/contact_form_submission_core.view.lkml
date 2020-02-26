@@ -1,4 +1,13 @@
+include: "//@{CONFIG_PROJECT_NAME}/contact_form_submission.view.lkml" 
+        
+        
 view: contact_form_submission {
+  extends: [contact_form_submission_config]
+}
+
+###################################################
+        
+view: contact_form_submission_core {
   sql_table_name: @{DATASET_NAME}.CONTACT_FORM_SUBMISSION ;;
 
   dimension: pk {
@@ -36,10 +45,10 @@ view: contact_form_submission {
     hidden: yes
   }
 
-  # dimension: timestamp {
-  #   type: string
-  #   sql: ${TABLE}.timestamp ;;
-  # }
+  dimension: title {
+    type: string
+    sql: ${TABLE}.title ;;
+  }
 
   dimension_group: timestamp {
     type: time
@@ -61,11 +70,6 @@ view: contact_form_submission {
     datatype: datetime
   }
 
-  dimension: title {
-    type: string
-    sql: ${TABLE}.title ;;
-  }
-
   measure: count {
     type: count
     drill_fields: [contact_id, timestamp_raw]
@@ -80,9 +84,8 @@ view: contact_form_submission {
   measure: conversion_rate {
     description: "Percent of sent emails that lead to a conversion."
     type: number
-    sql: ${contact_form_submission.conversions}/${email_event_sent.count};;
+    sql: ${contact_form_submission.conversions}/${email_event_sent.count} ;;
     value_format_name: percent_1
     drill_fields: [contact_id, timestamp_raw]
   }
-
 }

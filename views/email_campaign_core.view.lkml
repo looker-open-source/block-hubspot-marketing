@@ -1,4 +1,13 @@
+include: "//@{CONFIG_PROJECT_NAME}/email_campaign.view.lkml" 
+        
+        
 view: email_campaign {
+  extends: [email_campaign_config]
+}
+
+###################################################
+        
+view: email_campaign_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_CAMPAIGN ;;
   drill_fields: [id]
 
@@ -28,6 +37,7 @@ view: email_campaign {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
+
     link: {
       label: "Campaign Lookup Dashboard"
       url: "/dashboards/hubspot-marketing::campaign_lookup?Campaign Name={{ value }}"

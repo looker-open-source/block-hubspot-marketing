@@ -4,7 +4,7 @@
   elements:
   - title: Subscription Event Flow
     name: Subscription Event Flow
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: looker_column
     fields: [email_subscription_change.timestamp_month, email_subscription.count,
@@ -85,7 +85,7 @@
     height: 10
   - title: Unsubscribe Events
     name: Unsubscribe Events
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [email_subscription_change.count_unsubscribe_events, email_subscription_change.count_spam_report_events,
@@ -111,7 +111,7 @@
     height: 3
   - title: Emails Reported as Spam
     name: Emails Reported as Spam
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [email_subscription_change.count_unsubscribe_events, email_subscription_change.count_spam_report_events,
@@ -137,7 +137,7 @@
     height: 3
   - title: Subscribe Events
     name: Subscribe Events
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [email_subscription_change.count_unsubscribe_events, email_subscription_change.count_spam_report_events,
@@ -163,7 +163,7 @@
     height: 3
   - title: Best Performing Campaigns (Net Subscriptions)
     name: Best Performing Campaigns (Net Subscriptions)
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: looker_grid
     fields: [email_campaign.name, email_subscription_change.net_subscription_events,
@@ -258,7 +258,7 @@
     height: 8
   - title: Total Subscriptions Overall
     name: Total Subscriptions Overall
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: single_value
     fields: [email_subscription.count]
@@ -281,7 +281,7 @@
     height: 3
   - title: Worst Performing Campaigns (Net Subscriptions)
     name: Worst Performing Campaigns (Net Subscriptions)
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: looker_grid
     fields: [email_campaign.name, email_subscription_change.net_subscription_events,
@@ -376,7 +376,7 @@
     height: 8
   - title: Subscription Changes by Campaign Type
     name: Subscription Changes by Campaign Type
-    model: hubspot-marketing
+    model: block_hubspot_marketing
     explore: contact
     type: looker_column
     fields: [email_subscription_change.count, email_subscription_change.change, email_campaign.type]

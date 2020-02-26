@@ -1,4 +1,13 @@
+include: "//@{CONFIG_PROJECT_NAME}/form.view.lkml" 
+        
+        
 view: form {
+  extends: [form_config]
+}
+
+###################################################
+        
+view: form_core {
   sql_table_name: @{DATASET_NAME}.FORM ;;
 
   dimension: action {
@@ -28,7 +37,6 @@ view: form {
     sql: ${TABLE}.guid ;;
   }
 
-  # Deprecated by Hubspot, this field may not be available for all users
   dimension: lead_nurturing_campaign_id {
     type: number
     hidden: yes
