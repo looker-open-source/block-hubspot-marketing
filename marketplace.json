@@ -27,7 +27,7 @@
   "auxiliary_projects": [
     {
       "git_uri": "git://github.com/looker/block-hubspot-marketing-config.git",
-      "git_ref": "eeb75770028caa5194b998b8a2600d9a20b36b3f",
+      "git_ref": "b35a4a033079daa79d1066107eff10832a455809",
       "label": "Hubspot Marketing Config",
       "constant_name": "CONFIG_PROJECT_NAME"
     }
