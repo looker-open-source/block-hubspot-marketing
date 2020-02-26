@@ -1,4 +1,13 @@
+include: "//@{CONFIG_PROJECT_NAME}/email_event_click.view.lkml" 
+        
+        
 view: email_event_click {
+  extends: [email_event_click_config]
+}
+
+###################################################
+        
+view: email_event_click_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_CLICK ;;
   drill_fields: [id]
 

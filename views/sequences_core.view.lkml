@@ -1,4 +1,13 @@
+include: "//@{CONFIG_PROJECT_NAME}/sequences.view.lkml" 
+        
+        
 view: sequences {
+  extends: [sequences_config]
+}
+
+###################################################
+        
+view: sequences_core {
   derived_table: {
     sql: with
       grouped_table as(
@@ -15,18 +24,13 @@ view: sequences {
         RANK()  OVER (PARTITION BY contact_id ORDER BY email_date) AS touch_sequence
       FROM grouped_table
       ORDER BY 1 DESC, 2 ASC
-      LIMIT 500
-       ;;
+      LIMIT 500 ;;
   }
+
   dimension: id {
     type: string
     primary_key: yes
-    sql: CAST(${TABLE}.contact_id AS STRING) || ' ' || CAST(${TABLE}.email_date as STRING);;
-  }
-
-  measure: count {
-    type: count
-    drill_fields: [detail*]
+    sql: CAST(${TABLE}.contact_id AS STRING) || ' ' || CAST(${TABLE}.email_date as STRING) ;;
   }
 
   dimension: contact_id {
@@ -34,16 +38,21 @@ view: sequences {
     sql: ${TABLE}.contact_id ;;
   }
 
-  dimension_group: email_date {
-    type: time
-    sql: ${TABLE}.email_date ;;
-    timeframes: [date, raw]
-  }
-
   dimension: touch_sequence {
     view_label: "Contact"
     type: number
     sql: ${TABLE}.touch_sequence ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [detail*]
+  }
+
+  dimension_group: email_date {
+    type: time
+    sql: ${TABLE}.email_date ;;
+    timeframes: [date, raw]
   }
 
   set: detail {

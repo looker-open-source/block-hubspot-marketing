@@ -1,4 +1,13 @@
+include: "//@{CONFIG_PROJECT_NAME}/contact_property_history.view.lkml" 
+        
+        
 view: contact_property_history {
+  extends: [contact_property_history_config]
+}
+
+###################################################
+        
+view: contact_property_history_core {
   sql_table_name: @{DATASET_NAME}.CONTACT_PROPERTY_HISTORY ;;
 
   dimension: pk {

@@ -1,4 +1,13 @@
+include: "//@{CONFIG_PROJECT_NAME}/email_event_spam_report.view.lkml" 
+        
+        
 view: email_event_spam_report {
+  extends: [email_event_spam_report_config]
+}
+
+###################################################
+        
+view: email_event_spam_report_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_SPAM_REPORT ;;
   drill_fields: [id]
 

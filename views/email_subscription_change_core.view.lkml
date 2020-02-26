@@ -1,4 +1,13 @@
+include: "//@{CONFIG_PROJECT_NAME}/email_subscription_change.view.lkml" 
+        
+        
 view: email_subscription_change {
+  extends: [email_subscription_change_config]
+}
+
+###################################################
+        
+view: email_subscription_change_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_SUBSCRIPTION_CHANGE ;;
 
   dimension: pk {
@@ -63,6 +72,7 @@ view: email_subscription_change {
 
   measure: count_subscribe_events {
     type: count
+
     filters: {
       field: change
       value: "SUBSCRIBED"
@@ -72,6 +82,7 @@ view: email_subscription_change {
 
   measure: count_unsubscribe_events {
     type: count
+
     filters: {
       field: change
       value: "UNSUBSCRIBED"
@@ -86,6 +97,7 @@ view: email_subscription_change {
 
   measure: count_spam_report_events {
     type: count
+
     filters: {
       field: change
       value: "REPORTED_SPAM"
@@ -96,23 +108,25 @@ view: email_subscription_change {
   measure: unsubribe_rate {
     type: number
     description: "Number of Unsubscibe Events / Number of Sent Emails"
-    sql: ${count_unsubscribe_events} / ${email_event_sent.count};;
+    sql: ${count_unsubscribe_events} / ${email_event_sent.count} ;;
     value_format_name: percent_1
   }
 
   measure: subribe_rate {
     type: number
     description: "Number of Subscibe Events / Number of Sent Emails"
-    sql: ${net_subscription_events} / ${email_event_sent.count};;
+    sql: ${net_subscription_events} / ${email_event_sent.count} ;;
     value_format_name: percent_1
   }
 
   set: drills {
-    fields: [caused_by_event_id
-            , change_type
-            , change
-            , source
-            , subscription_id
-            , portal_id]
+    fields: [
+      caused_by_event_id,
+      change_type,
+      change,
+      source,
+      subscription_id,
+      portal_id
+    ]
   }
 }
