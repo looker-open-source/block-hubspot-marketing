@@ -1,12 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/campaign_stats.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/campaign_stats.view.lkml"
+
+
 view: campaign_stats {
   extends: [campaign_stats_config]
 }
 
 ###################################################
-        
+
 view: campaign_stats_core {
   derived_table: {
     explore_source: contact {

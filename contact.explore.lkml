@@ -1,5 +1,5 @@
 explore: contact_core {
-  extension: required 
+  extension: required
   join: contact_list_member {
   sql_on: ${contact.id} = ${contact_list_member.contact_id} ;;
   relationship: one_to_one
@@ -29,7 +29,7 @@ join: email_event {
 join: sequences {
   fields: [touch_sequence]
   sql_on: ${email_event.recipient} = ${sequences.contact_id} AND
-    ${email_event.created_date} = ${sequences.email_date_raw} ;;
+    ${email_event.created_date} = ${sequences.sent_on_raw} ;;
 }
 
 join: email_campaign {
@@ -109,5 +109,5 @@ join: email_event_status_change {
   sql_on: ${email_event.id} = ${email_event_status_change.id} ;;
   view_label: "Email Event Attributes"
 }
- 
+
 }

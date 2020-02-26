@@ -1,12 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/sequences.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/sequences.view.lkml"
+
+
 view: sequences {
   extends: [sequences_config]
 }
 
 ###################################################
-        
+
 view: sequences_core {
   derived_table: {
     sql: with
@@ -20,7 +20,7 @@ view: sequences_core {
       )
       SELECT
         grouped_table.contact_id  AS contact_id,
-        grouped_table.email_date as email_date,
+        grouped_table.email_date as sent_on,
         RANK()  OVER (PARTITION BY contact_id ORDER BY email_date) AS touch_sequence
       FROM grouped_table
       ORDER BY 1 DESC, 2 ASC
@@ -49,13 +49,13 @@ view: sequences_core {
     drill_fields: [detail*]
   }
 
-  dimension_group: email_date {
+  dimension_group: sent_on {
     type: time
-    sql: ${TABLE}.email_date ;;
+    sql: ${TABLE}.sent_on ;;
     timeframes: [date, raw]
   }
 
   set: detail {
-    fields: [contact_id, email_date, touch_sequence]
+    fields: [contact_id, sent_on_date, touch_sequence]
   }
 }
