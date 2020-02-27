@@ -47,6 +47,13 @@ view: campaign_stats {
     hidden: yes
   }
 
+  measure: average_numner_of_sent_emails {
+    type: average
+    description: "Average number of sent emails for all campaigns."
+    sql: (${sent_count}) ;;
+    value_format_name: decimal_0
+  }
+
   measure: average_delivery_rate {
     type: number
     description: "Percent of sent emails that were successfully delivered."
