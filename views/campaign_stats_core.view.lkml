@@ -97,4 +97,11 @@ view: campaign_stats_core {
     sql: SUM(${conversions})/SUM(${sent_count}) ;;
     value_format_name: percent_1
   }
+
+  measure: average_numner_of_sent_emails {
+    type: average
+    description: "Average number of sent emails for all campaigns."
+    sql: (${sent_count}) ;;
+    value_format_name: decimal_0
+  }
 }
