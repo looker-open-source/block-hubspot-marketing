@@ -1,4 +1,13 @@
+include: "//@{CONFIG_PROJECT_NAME}/email_subscription.view.lkml" 
+        
+        
 view: email_subscription {
+  extends: [email_subscription_config]
+}
+
+###################################################
+        
+view: email_subscription_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_SUBSCRIPTION ;;
   drill_fields: [id]
 

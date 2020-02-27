@@ -8,7 +8,7 @@ constant: CONFIG_PROJECT_NAME {
 }
 
 constant: CONNECTION_NAME {
-  value: "looker_app"
+  value: "brick-layer"
   export: override_required
 }
 

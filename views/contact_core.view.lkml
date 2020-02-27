@@ -1,4 +1,13 @@
+include: "//@{CONFIG_PROJECT_NAME}/contact.view.lkml" 
+        
+        
 view: contact {
+  extends: [contact_config]
+}
+
+###################################################
+        
+view: contact_core {
   sql_table_name: @{DATASET_NAME}.CONTACT ;;
   drill_fields: [id]
 
@@ -6,7 +15,6 @@ view: contact {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
-    #hidden: yes
   }
 
   dimension: address {
@@ -49,25 +57,6 @@ view: contact {
     type: string
     sql: ${TABLE}.property_country ;;
     description: "The contact's country of residence. This might be set via import, form, or integration"
-  }
-
-  dimension_group: created {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      fiscal_month_num,
-      fiscal_quarter,
-      fiscal_quarter_of_year,
-      fiscal_year
-      ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_createdate)  ;;
-    description: "The date that a contact was created in your HubSpot account"
-    datatype: datetime
   }
 
   dimension: currently_in_work_flow {
@@ -132,24 +121,6 @@ view: contact {
     description: "The field of study as provided through a lead ad form, set by the ads tool."
   }
 
-  dimension_group: first_deal_created_date {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      fiscal_month_num,
-      fiscal_quarter,
-      fiscal_quarter_of_year,
-      fiscal_year
-    ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_first_deal_created_date)  ;;
-    description: "The create date of the first deal a contact is associated to."
-  }
-
   dimension: first_name {
     group_label: "Personal Info"
     type: string
@@ -200,7 +171,7 @@ view: contact {
     description: ""
   }
 
-  dimension: average_page_views { # Use measure "Average Page Views"
+  dimension: average_page_views {
     hidden: yes
     group_label: "Hubspot Analytics"
     type: number
@@ -257,7 +228,7 @@ view: contact {
     description: "The last page the contact saw on your website. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: num_event_completions { # Use measure "Total Events Completed"
+  dimension: num_event_completions {
     hidden: yes
     group_label: "Hubspot Analytics"
     type: number
@@ -265,7 +236,7 @@ view: contact {
     description: "The sum of all events the contact has experienced. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: num_page_views { # Use measure "Total Page Views"
+  dimension: num_page_views {
     hidden: yes
     group_label: "Hubspot Analytics"
     type: number
@@ -273,7 +244,7 @@ view: contact {
     description: "The sum of all pages the contact has seen on your website. This is automatically set by HubSpot for each contact."
   }
 
-  dimension: num_visits { # Use measure "Total Interaction Events"
+  dimension: num_visits {
     hidden: yes
     group_label: "Hubspot Analytics"
     type: number
@@ -453,44 +424,6 @@ view: contact {
     type: string
     sql: ${TABLE}.property_hs_legal_basis ;;
     description: "Under the General Data Protection Regulation (GDPR), companies need a lawful reason to use and process contact data and must keep records of consent and evidence of other lawful purposes of processing."
-  }
-
-  dimension_group: lifecycle_stage_lead_date {
-    group_label: "Sales Lifecycle"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      fiscal_month_num,
-      fiscal_quarter,
-      fiscal_quarter_of_year,
-      fiscal_year
-    ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_hs_lifecyclestage_lead_date)  ;;
-    description: "The date that a contact's lifecycle stage changed to Lead. This is automatically set by HubSpot for each contact."
-  }
-
-  dimension_group: lifecycle_stage_opportunity_date {
-    group_label: "Sales Lifecycle"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      fiscal_month_num,
-      fiscal_quarter,
-      fiscal_quarter_of_year,
-      fiscal_year
-    ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_hs_lifecyclestage_opportunity_date) ;;
-    description: "The date that a contact's lifecycle stage changed to Opportunity. This is automatically set by HubSpot for each contact."
   }
 
   dimension: linkedin_id {
@@ -695,24 +628,6 @@ view: contact {
     description: "The contact's job title."
   }
 
-  dimension_group: last_modified_date {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      fiscal_month_num,
-      fiscal_quarter,
-      fiscal_quarter_of_year,
-      fiscal_year
-    ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_lastmodifieddate) ;;
-    description: "The last date and time that a property related to this contact was modified."
-  }
-
   dimension: last_name {
     group_label: "Personal Info"
     type: string
@@ -885,6 +800,99 @@ view: contact {
     type: string
     sql: ${TABLE}.property_zip ;;
     description: "The contact's zip code."
+  }
+
+  dimension_group: created {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_createdate) ;;
+    description: "The date that a contact was created in your HubSpot account"
+    datatype: datetime
+  }
+
+  dimension_group: first_deal_created_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_first_deal_created_date) ;;
+    description: "The create date of the first deal a contact is associated to."
+  }
+
+  dimension_group: lifecycle_stage_lead_date {
+    group_label: "Sales Lifecycle"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_hs_lifecyclestage_lead_date) ;;
+    description: "The date that a contact's lifecycle stage changed to Lead. This is automatically set by HubSpot for each contact."
+  }
+
+  dimension_group: lifecycle_stage_opportunity_date {
+    group_label: "Sales Lifecycle"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_hs_lifecyclestage_opportunity_date) ;;
+    description: "The date that a contact's lifecycle stage changed to Opportunity. This is automatically set by HubSpot for each contact."
+  }
+
+  dimension_group: last_modified_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
+    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_lastmodifieddate) ;;
+    description: "The last date and time that a property related to this contact was modified."
   }
 
   measure: count {
