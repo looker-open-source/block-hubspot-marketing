@@ -256,29 +256,6 @@
     col: 0
     width: 12
     height: 8
-  - title: Total Subscriptions Overall
-    name: Total Subscriptions Overall
-    model: block_hubspot_marketing
-    explore: contact
-    type: single_value
-    fields: [email_subscription.count]
-    limit: 500
-    column_limit: 50
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    defaults_version: 1
-    listen: {}
-    row: 0
-    col: 18
-    width: 6
-    height: 3
   - title: Worst Performing Campaigns (Net Subscriptions)
     name: Worst Performing Campaigns (Net Subscriptions)
     model: block_hubspot_marketing
@@ -465,6 +442,29 @@
     col: 0
     width: 24
     height: 10
+  - title: Total Subscribers
+    name: Total Subscribers
+    model: block_hubspot_marketing
+    explore: contact
+    type: single_value
+    fields: [email_subscription.count]
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    defaults_version: 1
+    listen: {}
+    row: 0
+    col: 18
+    width: 6
+    height: 3
   filters:
   - name: Date
     title: Date
