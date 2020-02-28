@@ -13,7 +13,7 @@ view: sequences_core {
       grouped_table as(
         SELECT
           contact.id  AS contact_id,
-          CAST(TIMESTAMP(FORMAT_TIMESTAMP('%F %H:%M:%E*S', PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', email_event.created)  , 'America/Los_Angeles')) AS DATE) AS email_date
+          email_event.created AS email_date
         FROM hubspot_marketing.CONTACT  AS contact
         LEFT JOIN hubspot_marketing.EMAIL_EVENT  AS email_event ON contact.id = email_event.recipient
         GROUP BY 1,2
