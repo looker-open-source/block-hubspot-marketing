@@ -33,7 +33,7 @@ join: email_event {
 join: sequences {
   fields: [touch_sequence]
   sql_on: ${email_event.recipient} = ${sequences.contact_id} AND
-    ${email_event.created_date} = ${sequences.sent_on_raw} ;;
+    ${email_event.created_raw} = PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${sequences.sent_on_raw}) ;;
   relationship: one_to_one
 }
 
