@@ -188,69 +188,6 @@
     col: 6
     width: 6
     height: 4
-  - title: Growth in Conversions
-    name: Growth in Conversions
-    model: block_hubspot_marketing
-    explore: contact
-    type: looker_area
-    fields: [email_event.created_date, contact.count, count_of_conversion_id]
-    fill_fields: [email_event.created_date]
-    sorts: [email_event.created_date]
-    limit: 500
-    column_limit: 50
-    dynamic_fields: [{table_calculation: running_total_conversions, label: Running
-          Total Conversions, expression: 'running_total(${count_of_conversion_id})',
-        value_format: !!null '', value_format_name: !!null '', is_disabled: false,
-        _kind_hint: measure, _type_hint: number}, {table_calculation: running_total_contacts,
-        label: Running Total Contacts, expression: 'running_total(${contact.count})',
-        value_format: !!null '', value_format_name: !!null '', _kind_hint: measure,
-        _type_hint: number, is_disabled: true}, {measure: count_of_conversion_id,
-        based_on: contact_form_submission.conversion_id, type: count_distinct, label: Count
-          of Conversion ID, expression: !!null '', _kind_hint: measure, _type_hint: number}]
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    show_null_points: false
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    y_axes: [{label: '', orientation: left, series: [{axisId: running_total_conversions,
-            id: running_total_conversions, name: Running Total Conversions}], showLabels: true,
-        showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
-        type: linear}]
-    series_types: {}
-    series_colors:
-      running_total_conversions: "#E57947"
-      running_total_contacts: "#4276BE"
-    discontinuous_nulls: false
-    defaults_version: 1
-    hidden_fields: [contact.count, count_of_conversion_id]
-    listen:
-      Date: email_event.created_date
-    row: 13
-    col: 16
-    width: 8
-    height: 4
   - title: Conversion Activity Heatmap
     name: Conversion Activity Heatmap
     model: block_hubspot_marketing
@@ -399,45 +336,19 @@
     col: 0
     width: 12
     height: 12
-  - title: Conversion Rate, All Campaigns
-    name: Conversion Rate, All Campaigns
-    model: block_hubspot_marketing
-    explore: contact
-    type: single_value
-    fields: [contact_form_submission.conversion_rate]
-    limit: 500
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    defaults_version: 1
-    row: 0
-    col: 12
-    width: 6
-    height: 4
-  - title: Growth in Contacts
-    name: Growth in Contacts
+  - title: Conversions over Time
+    name: Conversions over Time
     model: block_hubspot_marketing
     explore: contact
     type: looker_area
-    fields: [email_event.created_date, contact.count]
+    fields: [email_event.created_date, contact.count, count_of_conversion_id]
     fill_fields: [email_event.created_date]
     sorts: [email_event.created_date]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{table_calculation: running_total_contacts, label: Running Total
-          Contacts, expression: 'running_total(${contact.count})', value_format: !!null '',
-        value_format_name: !!null '', is_disabled: false, _kind_hint: measure, _type_hint: number},
-      {table_calculation: running_total_contacts_2, label: Running Total Contacts,
-        expression: 'running_total(${contact.count})', value_format: !!null '', value_format_name: !!null '',
-        is_disabled: true, _kind_hint: measure, _type_hint: number}, {measure: count_of_conversion_id,
-        based_on: contact_form_submission.conversion_id, type: count_distinct, label: Count
-          of Conversion ID, expression: !!null '', _kind_hint: measure, _type_hint: number}]
+    dynamic_fields: [{measure: count_of_conversion_id, based_on: contact_form_submission.conversion_id,
+        type: count_distinct, label: Count of Conversion ID, expression: !!null '',
+        _kind_hint: measure, _type_hint: number}]
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -461,27 +372,166 @@
     x_axis_scale: auto
     y_axis_combined: true
     show_null_points: false
-    interpolation: linear
+    interpolation: step
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: '', orientation: left, series: [{axisId: running_total_conversions,
-            id: running_total_conversions, name: Running Total Conversions}], showLabels: true,
+    y_axes: [{label: New Conversions, orientation: left, series: [{axisId: count_of_conversion_id,
+            id: count_of_conversion_id, name: Count of Conversion ID}], showLabels: true,
         showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
         type: linear}]
     series_types: {}
     series_colors:
       running_total_conversions: "#E57947"
       running_total_contacts: "#4276BE"
+      count_of_conversion_id: "#E57947"
+    swap_axes: false
     discontinuous_nulls: false
     defaults_version: 1
     hidden_fields: [contact.count]
+    ordering: none
+    show_null_labels: false
+    listen:
+      Date: email_event.created_date
+    row: 13
+    col: 16
+    width: 8
+    height: 4
+  - title: Contacts over Time
+    name: Contacts over Time
+    model: block_hubspot_marketing
+    explore: contact
+    type: looker_area
+    fields: [email_event.created_date, contact.count, count_of_conversion_id]
+    fill_fields: [email_event.created_date]
+    sorts: [email_event.created_date]
+    limit: 500
+    column_limit: 50
+    dynamic_fields: [{measure: count_of_conversion_id, based_on: contact_form_submission.conversion_id,
+        type: count_distinct, label: Count of Conversion ID, expression: !!null '',
+        _kind_hint: measure, _type_hint: number}]
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: step
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: New Contacts, orientation: left, series: [{axisId: contact.count,
+            id: contact.count, name: Contact}], showLabels: true, showValues: true,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    series_types: {}
+    series_colors:
+      running_total_conversions: "#E57947"
+      running_total_contacts: "#4276BE"
+      count_of_conversion_id: "#E57947"
+      contact.count: "#4276BE"
+    swap_axes: false
+    discontinuous_nulls: false
+    defaults_version: 1
+    hidden_fields: [count_of_conversion_id]
+    ordering: none
+    show_null_labels: false
     listen:
       Date: email_event.created_date
     row: 17
     col: 16
     width: 8
     height: 4
+  - title: Conversion Rate, All Campaigns
+    name: Conversion Rate, All Campaigns
+    model: block_hubspot_marketing
+    explore: contact
+    type: single_value
+    fields: [contact_form_submission.conversion_rate]
+    limit: 500
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    defaults_version: 1
+    listen:
+      Date: email_event.created_date
+    row: 0
+    col: 12
+    width: 6
+    height: 4
+  - title: Event Occurrence by Touch
+    name: Event Occurrence by Touch
+    model: block_hubspot_marketing
+    explore: contact
+    type: looker_column
+    fields: [sequences.touch_sequence, email_event_delivered.count, email_event_dropped.count,
+      email_event_open.count, contact_form_submission.conversion_rate]
+    sorts: [email_event_delivered.count desc]
+    limit: 500
+    column_limit: 50
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: circle
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types:
+      contact_form_submission.conversion_rate: line
+    series_colors:
+      email_event_dropped.count: "#FBB555"
+      email_event_open.count: "#E57947"
+      email_event_delivered.count: "#fad295"
+      contact_form_submission.conversion_rate: "#4276BE"
+    defaults_version: 1
+    listen:
+      Date: email_event.created_date
+    row: 4
+    col: 0
+    width: 12
+    height: 9
   - title: Campaign Event Rates
     name: Campaign Event Rates
     model: block_hubspot_marketing
@@ -490,8 +540,7 @@
     fields: [email_event.created_month, email_event_sent.count, email_event_delivered.count,
       email_event_open.count, contact_form_submission.conversion_rate]
     fill_fields: [email_event.created_month]
-    filters:
-      email_event.created_date: ''
+    filters: {}
     sorts: [email_event.created_month desc]
     limit: 500
     column_limit: 50
@@ -548,59 +597,10 @@
     defaults_version: 1
     hidden_fields: [email_event_sent.count, email_event_delivered.count, email_event_open.count,
       sent, contact_form_submission.conversion_rate]
-    listen: {}
+    listen:
+      Date: email_event.created_date
     row: 4
     col: 12
-    width: 12
-    height: 9
-  - title: Event Occurrence by Touch
-    name: Event Occurrence by Touch
-    model: block_hubspot_marketing
-    explore: contact
-    type: looker_column
-    fields: [sequences.touch_sequence, email_event_delivered.count, email_event_dropped.count,
-      email_event_open.count, contact_form_submission.conversion_rate]
-    sorts: [email_event_delivered.count desc]
-    limit: 500
-    column_limit: 50
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: normal
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: circle
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types:
-      contact_form_submission.conversion_rate: line
-    series_colors:
-      email_event_dropped.count: "#FBB555"
-      email_event_open.count: "#E57947"
-      email_event_delivered.count: "#fad295"
-      contact_form_submission.conversion_rate: "#4276BE"
-    defaults_version: 1
-    listen: {}
-    row: 4
-    col: 0
     width: 12
     height: 9
   filters:
