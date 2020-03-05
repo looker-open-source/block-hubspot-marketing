@@ -430,99 +430,6 @@
     col: 16
     width: 4
     height: 3
-  - title: All Campaigns
-    name: All Campaigns
-    model: block_hubspot_marketing
-    explore: contact
-    type: looker_grid
-    fields: [email_campaign.name, email_campaign.subject, email_campaign.type, contact_form_submission.conversions,
-      email_event_delivered.delivered_pct, email_event_open.opened_pct]
-    sorts: [contact_form_submission.conversions desc]
-    limit: 50
-    dynamic_fields: [{table_calculation: opened_percent, label: Opened Percent, expression: " if(\
-          \ ${email_event_delivered.delivered_pct} = null, 0.1, 0.1)  + (0.5*rand())\
-          \ + 0.10", value_format: !!null '', value_format_name: percent_1, _kind_hint: measure,
-        _type_hint: number, is_disabled: true}, {table_calculation: conversions, label: Conversions,
-        expression: " if( ${contact_form_submission.conversions} = null, 1, 1)  +\
-          \ (500*rand()) + 100", value_format: !!null '', value_format_name: decimal_0,
-        _kind_hint: measure, _type_hint: number, is_disabled: true}]
-    query_timezone: America/Los_Angeles
-    show_view_names: false
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    header_text_alignment: left
-    header_font_size: '12'
-    rows_font_size: '12'
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    show_sql_query_menu_options: false
-    show_totals: true
-    show_row_totals: true
-    series_cell_visualizations:
-      email_event_sent.count:
-        is_active: true
-      email_event_open.count:
-        is_active: true
-      sent:
-        is_active: true
-      opened:
-        is_active: true
-      delivered:
-        is_active: true
-      conversions:
-        is_active: true
-      contact_form_submission.conversions:
-        is_active: true
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    defaults_version: 1
-    series_types: {}
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    show_null_points: true
-    interpolation: linear
-    hidden_series: []
-    hidden_fields:
-    listen:
-      Email Date: email_event.created_date
-    row: 23
-    col: 0
-    width: 24
-    height: 8
   - title: Avg Sent Emails
     name: Avg Sent Emails
     model: block_hubspot_marketing
@@ -727,6 +634,92 @@
     col: 13
     width: 11
     height: 9
+  - title: All Campaigns
+    name: All Campaigns
+    model: block_hubspot_marketing
+    explore: contact
+    type: looker_grid
+    fields: [email_campaign.name, email_campaign.subject, email_campaign.type, contact_form_submission.conversions,
+      email_event_delivered.delivered_pct, email_event_open.opened_pct]
+    sorts: [contact_form_submission.conversions desc]
+    limit: 50
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    series_cell_visualizations:
+      email_event_sent.count:
+        is_active: true
+      email_event_open.count:
+        is_active: true
+      sent:
+        is_active: true
+      opened:
+        is_active: true
+      delivered:
+        is_active: true
+      conversions:
+        is_active: true
+      contact_form_submission.conversions:
+        is_active: true
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    defaults_version: 1
+    series_types: {}
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    show_null_points: true
+    interpolation: linear
+    hidden_series: []
+    hidden_fields:
+    listen:
+      Email Date: email_event.created_date
+    row: 23
+    col: 0
+    width: 24
+    height: 8
   filters:
   - name: Campaign Name
     title: Campaign Name
