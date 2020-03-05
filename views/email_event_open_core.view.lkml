@@ -1,12 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_event_open.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_event_open.view.lkml"
+
+
 view: email_event_open {
   extends: [email_event_open_config]
 }
 
 ###################################################
-        
+
 view: email_event_open_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_OPEN ;;
   drill_fields: [id]
@@ -64,7 +64,7 @@ view: email_event_open_core {
     label: "Opened Percent"
     description: "Percent of sent emails that were opened."
     type: number
-    sql: ${email_event_open.count}/${email_event_sent.count} ;;
+    sql: ${email_event_open.count}/IF(${email_event_sent.count}=0,NULL,${email_event_sent.count}) ;;
     drill_fields: [id]
     value_format_name: percent_1
   }
