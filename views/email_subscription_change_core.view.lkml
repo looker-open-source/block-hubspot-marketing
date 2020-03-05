@@ -1,12 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_subscription_change.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_subscription_change.view.lkml"
+
+
 view: email_subscription_change {
   extends: [email_subscription_change_config]
 }
 
 ###################################################
-        
+
 view: email_subscription_change_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_SUBSCRIPTION_CHANGE ;;
 
@@ -61,7 +61,7 @@ view: email_subscription_change_core {
   dimension_group: timestamp {
     type: time
     datatype: datetime
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.timestamp) ;;
+    sql: PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${TABLE}.timestamp) ;;
     description: "The timestamp (in milliseconds since epoch) when this change occurred. If 'causedByEvent' is present, this will be absent."
   }
 

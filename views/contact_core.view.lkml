@@ -1,12 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/contact.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/contact.view.lkml"
+
+
 view: contact {
   extends: [contact_config]
 }
 
 ###################################################
-        
+
 view: contact_core {
   sql_table_name: @{DATASET_NAME}.CONTACT ;;
   drill_fields: [id]
@@ -816,7 +816,7 @@ view: contact_core {
       fiscal_quarter_of_year,
       fiscal_year
     ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_createdate) ;;
+    sql: PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${TABLE}.property_createdate) ;;
     description: "The date that a contact was created in your HubSpot account"
     datatype: datetime
   }
@@ -835,7 +835,7 @@ view: contact_core {
       fiscal_quarter_of_year,
       fiscal_year
     ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_first_deal_created_date) ;;
+    sql: PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${TABLE}.property_first_deal_created_date) ;;
     description: "The create date of the first deal a contact is associated to."
   }
 
@@ -854,7 +854,7 @@ view: contact_core {
       fiscal_quarter_of_year,
       fiscal_year
     ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_hs_lifecyclestage_lead_date) ;;
+    sql: PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${TABLE}.property_hs_lifecyclestage_lead_date) ;;
     description: "The date that a contact's lifecycle stage changed to Lead. This is automatically set by HubSpot for each contact."
   }
 
@@ -873,7 +873,7 @@ view: contact_core {
       fiscal_quarter_of_year,
       fiscal_year
     ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_hs_lifecyclestage_opportunity_date) ;;
+    sql: PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${TABLE}.property_hs_lifecyclestage_opportunity_date) ;;
     description: "The date that a contact's lifecycle stage changed to Opportunity. This is automatically set by HubSpot for each contact."
   }
 
@@ -891,7 +891,7 @@ view: contact_core {
       fiscal_quarter_of_year,
       fiscal_year
     ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.property_lastmodifieddate) ;;
+    sql: PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${TABLE}.property_lastmodifieddate) ;;
     description: "The last date and time that a property related to this contact was modified."
   }
 

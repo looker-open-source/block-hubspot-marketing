@@ -26,14 +26,14 @@ join: form {
 }
 
 join: email_event {
-  sql_on: ${contact.id} = ${email_event.recipient} ;;
+  sql_on: ${contact.email} = CAST(${email_event.recipient} AS STRING) ;;
   relationship: one_to_many
 }
 
 join: sequences {
   fields: [touch_sequence]
-  sql_on: ${email_event.recipient} = ${sequences.contact_id} AND
-    ${email_event.created_raw} = PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${sequences.sent_on_raw}) ;;
+  sql_on: CAST(${email_event.recipient} AS STRING) = ${sequences.email} AND
+    ${email_event.created_raw} = PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${sequences.sent_on_raw}) ;;
   relationship: one_to_one
 }
 
