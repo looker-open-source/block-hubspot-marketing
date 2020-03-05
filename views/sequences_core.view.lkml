@@ -10,12 +10,11 @@ view: sequences {
 view: sequences_inner {
   derived_table: {
     sql: SELECT
-          contact.id  AS contact_id,
+          contact.property_email  AS email,
           email_event.created AS email_date
-        FROM hubspot_marketing.CONTACT  AS contact
-        LEFT JOIN hubspot_marketing.EMAIL_EVENT  AS email_event ON contact.id = email_event.recipient
-        GROUP BY 1,2
- ;;
+        FROM @{DATASET_NAME}.CONTACT  AS contact
+        LEFT JOIN @{DATASET_NAME}.EMAIL_EVENT  AS email_event ON contact.property_email = CAST(email_event.recipient AS STRING)
+        GROUP BY 1,2 ;;
   }
 
   measure: count {
@@ -24,9 +23,9 @@ view: sequences_inner {
     drill_fields: [detail*]
   }
 
-  dimension: contact_id {
+  dimension: email {
     type: number
-    sql: ${TABLE}.contact_id ;;
+    sql: ${TABLE}.email ;;
     hidden: yes
   }
 
@@ -37,21 +36,21 @@ view: sequences_inner {
   }
 
   set: detail {
-    fields: [contact_id, email_date]
+    fields: [email, email_date]
   }
 }
 
 
 view: sequences_core {
   derived_table: {
+    persist_for: "24 hours"
     sql:
       SELECT
-        inner_table.contact_id  AS contact_id,
+        inner_table.email  AS email,
         inner_table.email_date as sent_on,
-        RANK()  OVER (PARTITION BY contact_id ORDER BY email_date) AS touch_sequence
+        RANK()  OVER (PARTITION BY email ORDER BY email_date) AS touch_sequence
       FROM ${sequences_inner.SQL_TABLE_NAME} as inner_table
-      ORDER BY 1 DESC, 2 ASC
-      LIMIT 500 ;;
+      ORDER BY 1 DESC, 2 ASC ;;
   }
 
   dimension: id {
@@ -60,10 +59,10 @@ view: sequences_core {
     sql: CAST(${TABLE}.contact_id AS STRING) || ' ' || CAST(${TABLE}.sent_on as STRING) ;;
   }
 
-  dimension: contact_id {
+  dimension: email {
     hidden: yes
     type: number
-    sql: ${TABLE}.contact_id ;;
+    sql: ${TABLE}.email ;;
   }
 
   dimension: touch_sequence {
@@ -85,6 +84,6 @@ view: sequences_core {
   }
 
   set: detail {
-    fields: [contact_id, sent_on_date, touch_sequence]
+    fields: [email, sent_on_date, touch_sequence]
   }
 }

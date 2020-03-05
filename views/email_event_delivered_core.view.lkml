@@ -1,12 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_event_delivered.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_event_delivered.view.lkml"
+
+
 view: email_event_delivered {
   extends: [email_event_delivered_config]
 }
 
 ###################################################
-        
+
 view: email_event_delivered_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_DELIVERED ;;
   drill_fields: [id]
@@ -45,7 +45,7 @@ view: email_event_delivered_core {
     label: "Delivered Percent"
     description: "Percent of sent emails that were successfully delivered."
     type: number
-    sql: ${email_event_delivered.count}/${email_event_sent.count} ;;
+    sql: ${email_event_delivered.count}/IF(${email_event_sent.count}=0,NULL,${email_event_sent.count}) ;;
     drill_fields: [id]
     value_format_name: percent_1
   }

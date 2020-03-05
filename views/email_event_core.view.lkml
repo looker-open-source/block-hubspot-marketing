@@ -1,12 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_event.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_event.view.lkml"
+
+
 view: email_event {
   extends: [email_event_config]
 }
 
 ###################################################
-        
+
 view: email_event_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_EVENT ;;
   drill_fields: [id]
@@ -110,7 +110,7 @@ view: email_event_core {
       fiscal_quarter_of_year,
       fiscal_year
     ]
-    sql: PARSE_TIMESTAMP('%m-%d-%YT%H:%M:%S', ${TABLE}.created) ;;
+    sql: PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${TABLE}.created) ;;
     description: "The timestamp (in milliseconds since epoch) when this event was created."
     datatype: datetime
   }

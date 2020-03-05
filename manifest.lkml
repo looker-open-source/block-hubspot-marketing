@@ -13,7 +13,7 @@ constant: CONNECTION_NAME {
 }
 
 constant: DATASET_NAME {
-  value: "hubspot_marketing"
+  value: "hubspot_sequences"
   export: override_required
 }
 
