@@ -81,6 +81,86 @@
     col: 20
     width: 4
     height: 3
+  - title: Campaign Performance Vs All Campaigns
+    name: Campaign Performance Vs All Campaigns
+    model: block_hubspot_marketing
+    explore: contact
+    type: looker_line
+    fields: [contact_form_submission.conversion_rate, email_event_delivered.delivered_pct,
+      email_event_open.opened_pct, email_event.created_month]
+    sorts: [email_event.created_month desc]
+    limit: 50
+    dynamic_fields: [{measure: count_of_conversion_id, based_on: contact_form_submission.conversion_id,
+        expression: '', label: Count of Conversion ID, type: count_distinct, _kind_hint: measure,
+        _type_hint: number}]
+    query_timezone: America/Los_Angeles
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: circle_outline
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: true
+    interpolation: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    hidden_series: []
+    series_types: {}
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    enable_conditional_formatting: false
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    series_cell_visualizations:
+      email_event_sent.count:
+        is_active: true
+      email_event_open.count:
+        is_active: true
+    defaults_version: 1
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    hidden_fields:
+    listen:
+      Campaign Name: email_campaign.name
+      Email Date: email_event.created_date
+    row: 2
+    col: 0
+    width: 16
+    height: 12
   - title: Avg Open Rate
     name: Avg Open Rate
     model: block_hubspot_marketing
@@ -350,86 +430,6 @@
     col: 16
     width: 4
     height: 3
-  - title: Campaign Performance Vs All Campaigns
-    name: Campaign Performance Vs All Campaigns
-    model: block_hubspot_marketing
-    explore: contact
-    type: looker_line
-    fields: [contact_form_submission.conversion_rate, email_event_delivered.delivered_pct,
-      email_event_open.opened_pct, email_event.created_month]
-    sorts: [email_event.created_month desc]
-    limit: 50
-    dynamic_fields: [{measure: count_of_conversion_id, based_on: contact_form_submission.conversion_id,
-        expression: '', label: Count of Conversion ID, type: count_distinct, _kind_hint: measure,
-        _type_hint: number}]
-    query_timezone: America/Los_Angeles
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: circle_outline
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    show_null_points: true
-    interpolation: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    hidden_series: []
-    series_types: {}
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    enable_conditional_formatting: false
-    header_text_alignment: left
-    header_font_size: '12'
-    rows_font_size: '12'
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    show_sql_query_menu_options: false
-    show_totals: true
-    show_row_totals: true
-    series_cell_visualizations:
-      email_event_sent.count:
-        is_active: true
-      email_event_open.count:
-        is_active: true
-    defaults_version: 1
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    hidden_fields:
-    listen:
-      Campaign Name: email_campaign.name
-      Email Date: email_event.created_date
-    row: 2
-    col: 0
-    width: 16
-    height: 12
   - title: All Campaigns
     name: All Campaigns
     model: block_hubspot_marketing
@@ -523,18 +523,47 @@
     col: 0
     width: 24
     height: 8
-  - title: Subscription Changes
-    name: Subscription Changes
+  - title: Avg Sent Emails
+    name: Avg Sent Emails
+    model: block_hubspot_marketing
+    explore: contact
+    type: single_value
+    fields: [campaign_stats.average_numner_of_sent_emails]
+    filters: {}
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    defaults_version: 1
+    listen:
+      Campaign Name: email_campaign.name
+      Email Date: email_event.created_date
+    row: 2
+    col: 20
+    width: 4
+    height: 3
+  - title: Subscription Changes by Day
+    name: Subscription Changes by Day
     model: block_hubspot_marketing
     explore: contact
     type: looker_column
-    fields: [email_event.created_week, email_subscription_change.subribe_rate, email_subscription_change.unsubribe_rate]
+    fields: [email_event.created_week, email_subscription_change.count_subscribe_events,
+      email_subscription_change.count_unsubscribe_events]
     fill_fields: [email_event.created_week]
     sorts: [email_event.created_week]
     limit: 50
-    dynamic_fields: [{table_calculation: unsubscribe_rate, label: Unsubscribe Rate,
-        expression: "-1 * ${email_subscription_change.unsubribe_rate}", value_format: !!null '',
-        value_format_name: percent_1, _kind_hint: measure, _type_hint: number}]
+    dynamic_fields: [{table_calculation: count_unsubscribe_events, label: Count Unsubscribe
+          Events, expression: "-1 * ${email_subscription_change.count_unsubscribe_events}",
+        value_format: !!null '', value_format_name: decimal_0, _kind_hint: measure,
+        _type_hint: number}]
     query_timezone: America/Los_Angeles
     x_axis_gridlines: false
     y_axis_gridlines: true
@@ -612,7 +641,7 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    hidden_fields: [email_subscription_change.unsubribe_rate]
+    hidden_fields: [email_subscription_change.count_unsubscribe_events]
     listen:
       Campaign Name: email_campaign.name
       Email Date: email_event.created_date
@@ -620,35 +649,8 @@
     col: 0
     width: 13
     height: 9
-  - title: Avg Sent Emails
-    name: Avg Sent Emails
-    model: block_hubspot_marketing
-    explore: contact
-    type: single_value
-    fields: [campaign_stats.average_numner_of_sent_emails]
-    filters: {}
-    limit: 500
-    column_limit: 50
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    series_types: {}
-    defaults_version: 1
-    listen:
-      Campaign Name: email_campaign.name
-      Email Date: email_event.created_date
-    row: 2
-    col: 20
-    width: 4
-    height: 3
-  - title: Marked as Spam Events
-    name: Marked as Spam Events
+  - title: Emails Marked as Spam by Contact List
+    name: Emails Marked as Spam by Contact List
     model: block_hubspot_marketing
     explore: contact
     type: looker_grid
@@ -677,7 +679,7 @@
     show_totals: true
     show_row_totals: true
     series_labels:
-      contact_list.name: List Name
+      contact_list.name: Contact List
       email_event_spam_report.count: Marked as Spam
     series_cell_visualizations:
       reported_as_spam:
