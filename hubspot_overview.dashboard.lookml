@@ -2,6 +2,90 @@
   title: Hubspot Overview
   layout: newspaper
   elements:
+  - title: Conversion Rate, All Campaigns
+    name: Conversion Rate, All Campaigns
+    model: block_hubspot_marketing
+    explore: contact
+    type: single_value
+    fields: [contact_form_submission.conversion_rate]
+    limit: 500
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    defaults_version: 1
+    listen:
+      Date: email_event.created_date
+    row: 0
+    col: 12
+    width: 6
+    height: 4
+  - title: Campaign Event Rates
+    name: Campaign Event Rates
+    model: block_hubspot_marketing
+    explore: contact
+    type: looker_area
+    fields: [email_event.created_month, contact_form_submission.conversion_rate, email_event_open.opened_pct,
+      email_event_delivered.delivered_pct]
+    fill_fields: [email_event.created_month]
+    sorts: [email_event.created_month desc]
+    limit: 500
+    column_limit: 50
+    x_axis_gridlines: true
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    series_colors:
+      sent: "#E57947"
+      delivered: "#FBB555"
+      opened: "#E57947"
+      conversion_rate: "#4276BE"
+      email_event_delivered.delivered_pct: "#E57947"
+      email_event_open.opened_pct: "#FBB555"
+      contact_form_submission.conversion_rate: "#4276BE"
+    series_point_styles:
+      conversion_rate: diamond
+    swap_axes: false
+    discontinuous_nulls: true
+    ordering: none
+    show_null_labels: false
+    defaults_version: 1
+    hidden_fields:
+    listen:
+      Date: email_event.created_date
+    row: 4
+    col: 12
+    width: 12
+    height: 9
   - title: Campaigns
     name: Campaigns
     model: block_hubspot_marketing
@@ -9,9 +93,6 @@
     type: single_value
     fields: [email_campaign.count]
     limit: 500
-    dynamic_fields: [{table_calculation: calculation_1, label: Calculation 1, expression: "${email_campaign.count}*rand()*100",
-        value_format: !!null '', value_format_name: id, _kind_hint: measure, _type_hint: number,
-        is_disabled: true}]
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -36,9 +117,6 @@
     type: single_value
     fields: [email_event_open.opened_pct]
     limit: 500
-    dynamic_fields: [{table_calculation: calculation_1, label: Calculation 1, expression: "${email_event_open.opened_pct}*rand()",
-        value_format: !!null '', value_format_name: percent_0, _kind_hint: measure,
-        _type_hint: number, is_disabled: true}]
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -56,29 +134,6 @@
     col: 6
     width: 6
     height: 4
-  - title: Conversion Rate, All Campaigns
-    name: Conversion Rate, All Campaigns
-    model: block_hubspot_marketing
-    explore: contact
-    type: single_value
-    fields: [contact_form_submission.conversion_rate]
-    limit: 500
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    defaults_version: 1
-    listen:
-      Date: email_event.created_date
-    row: 0
-    col: 12
-    width: 6
-    height: 4
   - title: Contacts
     name: Contacts
     model: block_hubspot_marketing
@@ -86,12 +141,6 @@
     type: single_value
     fields: [email_campaign.count]
     limit: 500
-    dynamic_fields: [{table_calculation: calculation_1, label: Calculation 1, expression: "${email_campaign.count}*rand()*10000",
-        value_format: !!null '', value_format_name: decimal_0, _kind_hint: measure,
-        _type_hint: number, is_disabled: true}, {measure: this_month, based_on: contact.count,
-        label: This Month, value_format: !!null '', value_format_name: !!null '',
-        _kind_hint: measure, _type_hint: number, filter_expression: 'diff_days(${contact.created_month},
-          now()) < 365'}]
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -171,68 +220,6 @@
     col: 0
     width: 12
     height: 9
-  - title: Campaign Event Rates
-    name: Campaign Event Rates
-    model: block_hubspot_marketing
-    explore: contact
-    type: looker_area
-    fields: [email_event.created_month, contact_form_submission.conversion_rate, email_event_open.opened_pct,
-      email_event_delivered.delivered_pct]
-    fill_fields: [email_event.created_month]
-    filters: {}
-    sorts: [email_event.created_month desc]
-    limit: 500
-    column_limit: 50
-    x_axis_gridlines: true
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: normal
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    show_null_points: false
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    series_colors:
-      sent: "#E57947"
-      delivered: "#FBB555"
-      opened: "#E57947"
-      conversion_rate: "#4276BE"
-      email_event_delivered.delivered_pct: "#E57947"
-      email_event_open.opened_pct: "#FBB555"
-      contact_form_submission.conversion_rate: "#4276BE"
-    series_point_styles:
-      conversion_rate: diamond
-    swap_axes: false
-    discontinuous_nulls: true
-    ordering: none
-    show_null_labels: false
-    defaults_version: 1
-    hidden_fields:
-    listen:
-      Date: email_event.created_date
-    row: 4
-    col: 12
-    width: 12
-    height: 9
   - title: Opened Rate, Largest Campaigns
     name: Opened Rate, Largest Campaigns
     model: block_hubspot_marketing
@@ -243,9 +230,6 @@
       email_campaign.name: "-NULL"
     sorts: [email_event_sent.count desc]
     limit: 10
-    dynamic_fields: [{table_calculation: opened_percent, label: Opened Percent, expression: "${email_event_open.opened_pct}*rand()/10",
-        value_format: !!null '', value_format_name: percent_1, _kind_hint: measure,
-        _type_hint: number, is_disabled: true}]
     query_timezone: America/Los_Angeles
     value_labels: labels
     label_type: labVal
@@ -288,11 +272,6 @@
     type: looker_column
     fields: [email_event_sent.count, email_event_delivered.count, email_event_open.count]
     limit: 500
-    dynamic_fields: [{table_calculation: delivered, label: Delivered, expression: "${sent}*0.85",
-        value_format: !!null '', value_format_name: id, _kind_hint: measure, _type_hint: number,
-        is_disabled: true}, {table_calculation: opened, label: Opened, expression: "${delivered}*0.6",
-        value_format: !!null '', value_format_name: id, _kind_hint: measure, _type_hint: number,
-        is_disabled: true}]
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -350,9 +329,6 @@
     sorts: [email_event.created_date]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{measure: count_of_conversion_id, based_on: contact_form_submission.conversion_id,
-        type: count_distinct, label: Count of Conversion ID, expression: !!null '',
-        _kind_hint: measure, _type_hint: number}]
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -412,9 +388,6 @@
     sorts: [email_event.created_date]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{measure: count_of_conversion_id, based_on: contact_form_submission.conversion_id,
-        type: count_distinct, label: Count of Conversion ID, expression: !!null '',
-        _kind_hint: measure, _type_hint: number}]
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -536,9 +509,6 @@
     sorts: [contact_form_submission.timestamp_day_of_week 0, contact_form_submission.timestamp_hour_of_day]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{measure: count_of_conversion_id, based_on: contact_form_submission.conversion_id,
-        expression: '', label: Count of Conversion ID, type: count_distinct, _kind_hint: measure,
-        _type_hint: number}]
     show_view_names: false
     show_row_numbers: true
     transpose: false
