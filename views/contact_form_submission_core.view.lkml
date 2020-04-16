@@ -66,8 +66,7 @@ view: contact_form_submission_core {
       fiscal_quarter_of_year,
       fiscal_year
     ]
-    sql: PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${TABLE}.timestamp) ;;
-    datatype: datetime
+    sql:  ${TABLE}.timestamp ;;
   }
 
   measure: count {
