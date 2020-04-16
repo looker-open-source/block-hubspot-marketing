@@ -110,9 +110,8 @@ view: email_event_core {
       fiscal_quarter_of_year,
       fiscal_year
     ]
-    sql: PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${TABLE}.created) ;;
+    sql:  ${TABLE}.created ;;
     description: "The timestamp (in milliseconds since epoch) when this event was created."
-    datatype: datetime
   }
 
   measure: count {

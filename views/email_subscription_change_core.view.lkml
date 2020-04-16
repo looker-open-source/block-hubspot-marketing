@@ -59,9 +59,20 @@ view: email_subscription_change_core {
   }
 
   dimension_group: timestamp {
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      fiscal_month_num,
+      fiscal_quarter,
+      fiscal_quarter_of_year,
+      fiscal_year
+    ]
     type: time
-    datatype: datetime
-    sql: PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%S', ${TABLE}.timestamp) ;;
+    sql:  ${TABLE}.timestamp ;;
     description: "The timestamp (in milliseconds since epoch) when this change occurred. If 'causedByEvent' is present, this will be absent."
   }
 
