@@ -68,7 +68,7 @@ view: email_event_core {
   }
 
   dimension: recipient {
-    type: number
+    type: string
     sql: ${TABLE}.recipient ;;
     description: "The email address of the recipient of the email message."
   }
