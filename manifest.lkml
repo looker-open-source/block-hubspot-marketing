@@ -8,12 +8,12 @@ constant: CONFIG_PROJECT_NAME {
 }
 
 constant: CONNECTION_NAME {
-  value: "connection"
+  value: "brick-layer"
   export: override_required
 }
 
 constant: DATASET_NAME {
-  value: "dataset"
+  value: "hubspot_jeffty"
   export: override_required
 }
 

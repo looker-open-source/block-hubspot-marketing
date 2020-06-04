@@ -133,4 +133,35 @@ view: email_event_core {
     type: date
     sql: MAX(${created_raw}) ;;
   }
+
+  measure: total_recip_openers  {
+    type: count_distinct
+    sql: ${recipient} ;;
+    filters: [type: "OPEN"]
+  }
+  measure: total_recip_clicks  {
+    type: count_distinct
+    sql: ${recipient} ;;
+    filters: [type: "CLICK"]
+  }
+  measure: total_recip_sent  {
+    type: count_distinct
+    sql: ${recipient} ;;
+    filters: [type: "SENT"]
+  }
+  measure: open_ratio {
+    type: number
+    value_format_name: percent_2
+    sql: 1*${total_recip_openers}/ifnull(${total_recip_sent},0) ;;
+  }
+  measure: click_ratio {
+    type: number
+    value_format_name: percent_2
+    sql: 1*${total_recip_clicks}/ifnull(${total_recip_sent},0) ;;
+  }
+  measure: total_recip_deferred  {
+    type: count_distinct
+    sql: ${recipient} ;;
+    filters: [type: "DEFERRED"]
+  }
 }
