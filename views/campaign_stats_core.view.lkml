@@ -19,15 +19,15 @@ view: campaign_stats_core {
       }
 
       column: opened_count {
-        field: email_event_open.count
+        field: email_event.total_recip_openers
       }
 
       column: delivered_count {
-        field: email_event_delivered.count
+        field: email_event.total_recip_delivered
       }
 
       column: sent_count {
-        field: email_event_sent.count
+        field: email_event.total_recip_sent
       }
 
       column: conversions {
@@ -75,30 +75,31 @@ view: campaign_stats_core {
     type: time
     hidden: yes
     timeframes: [date, month, raw]
+    datatype: epoch
   }
 
   measure: average_delivery_rate {
     type: number
     description: "Percent of sent emails that were successfully delivered."
-    sql: SUM(${delivered_count})/SUM(${sent_count}) ;;
-    value_format_name: percent_1
+    sql: SAFE_DIVIDE(SUM(${delivered_count}), SUM(${sent_count})) ;;
+    value_format_name: percent_2
   }
 
   measure: average_open_rate {
     type: number
     description: "Percent of sent emails that were opened."
-    sql: SUM(${opened_count})/SUM(${sent_count}) ;;
-    value_format_name: percent_1
+    sql: SAFE_DIVIDE(SUM(${opened_count}), SUM(${sent_count})) ;;
+    value_format_name: percent_2
   }
 
   measure: average_conversion_rate {
     description: "Percent of sent emails that lead to a conversion."
     type: number
-    sql: SUM(${conversions})/SUM(${sent_count}) ;;
-    value_format_name: percent_1
+    sql: SAFE_DIVIDE(SUM(${conversions}), SUM(${sent_count})) ;;
+    value_format_name: percent_2
   }
 
-  measure: average_numner_of_sent_emails {
+  measure: average_number_of_sent_emails {
     type: average
     description: "Average number of sent emails for all campaigns."
     sql: (${sent_count}) ;;

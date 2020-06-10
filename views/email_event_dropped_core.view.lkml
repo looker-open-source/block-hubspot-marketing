@@ -1,12 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_event_dropped.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_event_dropped.view.lkml"
+
+
 view: email_event_dropped {
   extends: [email_event_dropped_config]
 }
 
 ###################################################
-        
+
 view: email_event_dropped_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_DROPPED ;;
   drill_fields: [id]
@@ -71,7 +71,17 @@ view: email_event_dropped_core {
   measure: count {
     label: "Dropped Count"
     description: "The message was rejected, either by HubSpot or by our delivery provider, and no attempt will be made to deliver the message."
-    type: count
+    type: number
+    sql: ${email_event.total_recip_dropped} ;;
     drill_fields: [id]
+  }
+
+  measure: dropped_pct {
+    label: "Dropped Percent"
+    description: "Percent of sent emails that were dropped."
+    type: number
+    sql: ${email_event.dropped_ratio} ;;
+    drill_fields: [id]
+    value_format_name: percent_2
   }
 }

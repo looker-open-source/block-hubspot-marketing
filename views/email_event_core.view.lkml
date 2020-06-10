@@ -119,7 +119,7 @@ view: email_event_core {
     drill_fields: [id, app_name, email_campaign.app_name, email_campaign.name, email_campaign.id]
   }
 
-  measure: undelievered_count {
+  measure: undelivered_count {
     type: number
     sql: ${email_event_bounce.count} + ${email_event_dropped.count} + ${email_event_deferred.count} ;;
   }
@@ -138,30 +138,80 @@ view: email_event_core {
     type: count_distinct
     sql: ${recipient} ;;
     filters: [type: "OPEN"]
+    hidden: yes   # surfaced in the email event attribute view
   }
   measure: total_recip_clicks  {
     type: count_distinct
     sql: ${recipient} ;;
     filters: [type: "CLICK"]
+    hidden: yes   # surfaced in the email event attribute view
+  }
+  measure: total_recip_delivered  {
+    type: count_distinct
+    sql: ${recipient} ;;
+    filters: [type: "DELIVERED"]
+    hidden: yes   # surfaced in the email event attribute view
   }
   measure: total_recip_sent  {
     type: count_distinct
     sql: ${recipient} ;;
     filters: [type: "SENT"]
-  }
-  measure: open_ratio {
-    type: number
-    value_format_name: percent_2
-    sql: 1*${total_recip_openers}/ifnull(${total_recip_sent},0) ;;
-  }
-  measure: click_ratio {
-    type: number
-    value_format_name: percent_2
-    sql: 1*${total_recip_clicks}/ifnull(${total_recip_sent},0) ;;
+    hidden: yes   # surfaced in the email event attribute view
   }
   measure: total_recip_deferred  {
     type: count_distinct
     sql: ${recipient} ;;
     filters: [type: "DEFERRED"]
+    hidden: yes   # surfaced in the email event attribute view
+  }
+  measure: total_recip_dropped  {
+    type: count_distinct
+    sql: ${recipient} ;;
+    filters: [type: "DROPPED"]
+    hidden: yes   # surfaced in the email event attribute view
+  }
+  measure: total_recip_bounced  {
+    type: count_distinct
+    sql: ${recipient} ;;
+    filters: [type: "BOUNCED"]
+    hidden: yes   # surfaced in the email event attribute view
+  }
+
+
+  measure: open_ratio {
+    type: number
+    value_format_name: percent_2
+    sql: 1*${total_recip_openers}/nullif(${total_recip_sent},0) ;;
+    hidden: yes   # surfaced in the email event attribute view
+  }
+  measure: click_ratio {
+    type: number
+    value_format_name: percent_2
+    sql: 1*${total_recip_clicks}/nullif(${total_recip_sent},0) ;;
+    hidden: yes   # surfaced in the email event attribute view
+  }
+  measure: delivered_ratio {
+    type: number
+    value_format_name: percent_2
+    sql: 1*${total_recip_delivered}/nullif(${total_recip_sent},0) ;;
+    hidden: yes   # surfaced in the email event attribute view
+  }
+  measure: deferred_ratio {
+    type: number
+    value_format_name: percent_2
+    sql: 1*${total_recip_deferred}/nullif(${total_recip_sent},0) ;;
+    hidden: yes   # surfaced in the email event attribute view
+  }
+  measure: dropped_ratio {
+    type: number
+    value_format_name: percent_2
+    sql: 1*${total_recip_dropped}/nullif(${total_recip_sent},0) ;;
+    hidden: yes   # surfaced in the email event attribute view
+  }
+  measure: bounced_ratio {
+    type: number
+    value_format_name: percent_2
+    sql: 1*${total_recip_bounced}/nullif(${total_recip_sent},0) ;;
+    hidden: yes   # surfaced in the email event attribute view
   }
 }

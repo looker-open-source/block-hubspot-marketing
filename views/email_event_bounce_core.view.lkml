@@ -1,12 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_event_bounce.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_event_bounce.view.lkml"
+
+
 view: email_event_bounce {
   extends: [email_event_bounce_config]
 }
 
 ###################################################
-        
+
 view: email_event_bounce_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_BOUNCE ;;
   drill_fields: [id]
@@ -43,7 +43,17 @@ view: email_event_bounce_core {
   measure: count {
     label: "Bounce Count"
     description: "The recipient's email server couldn't or wouldn't accept the message, and no further attempts will be made to deliver the message."
-    type: count
+    type: number
+    sql: ${email_event.total_recip_bounced} ;;
     drill_fields: [id]
+  }
+
+  measure: bounced_pct {
+    label: "Bounced Percent"
+    description: "Percent of sent emails that were bounced."
+    type: number
+    sql: ${email_event.bounced_ratio} ;;
+    drill_fields: [id]
+    value_format_name: percent_2
   }
 }

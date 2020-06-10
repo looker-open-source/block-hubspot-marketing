@@ -73,6 +73,7 @@ view: email_subscription_change_core {
     ]
     type: time
     sql:  ${TABLE}.timestamp ;;
+    datatype: epoch
     description: "The timestamp (in milliseconds since epoch) when this change occurred. If 'causedByEvent' is present, this will be absent."
   }
 
@@ -120,14 +121,14 @@ view: email_subscription_change_core {
     type: number
     description: "Number of Unsubscibe Events / Number of Sent Emails"
     sql: ${count_unsubscribe_events} / ${email_event_sent.count} ;;
-    value_format_name: percent_1
+    value_format_name: percent_2
   }
 
   measure: subribe_rate {
     type: number
     description: "Number of Subscibe Events / Number of Sent Emails"
     sql: ${net_subscription_events} / ${email_event_sent.count} ;;
-    value_format_name: percent_1
+    value_format_name: percent_2
   }
 
   set: drills {

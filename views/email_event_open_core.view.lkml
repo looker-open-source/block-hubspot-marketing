@@ -56,7 +56,8 @@ view: email_event_open_core {
   measure: count {
     label: "Opened Count"
     description: "The recipient opened the message."
-    type: count
+    type: number
+    sql: ${email_event.total_recip_openers} ;;
     drill_fields: [id]
   }
 
@@ -64,8 +65,8 @@ view: email_event_open_core {
     label: "Opened Percent"
     description: "Percent of sent emails that were opened."
     type: number
-    sql: ${email_event_open.count}/IF(${email_event_sent.count}=0,NULL,${email_event_sent.count}) ;;
+    sql: ${email_event.open_ratio} ;;
     drill_fields: [id]
-    value_format_name: percent_1
+    value_format_name: percent_2
   }
 }
