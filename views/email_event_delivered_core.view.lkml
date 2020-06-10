@@ -37,16 +37,17 @@ view: email_event_delivered_core {
   measure: count {
     label: "Delivered Count"
     description: " The recipient's email server has accepted the message and the message has been successfully delivered to the recipient."
-    type: count
+    type: number
     drill_fields: [id]
+    sql: ${email_event.total_recip_delivered} ;;
   }
 
   measure: delivered_pct {
     label: "Delivered Percent"
     description: "Percent of sent emails that were successfully delivered."
     type: number
-    sql: ${email_event_delivered.count}/IF(${email_event_sent.count}=0,NULL,${email_event_sent.count}) ;;
+    sql: ${email_event.delivered_ratio} ;;
     drill_fields: [id]
-    value_format_name: percent_1
+    value_format_name: percent_2
   }
 }

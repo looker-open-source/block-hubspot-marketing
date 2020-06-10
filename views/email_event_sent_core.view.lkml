@@ -1,12 +1,12 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_event_sent.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_event_sent.view.lkml"
+
+
 view: email_event_sent {
   extends: [email_event_sent_config]
 }
 
 ###################################################
-        
+
 view: email_event_sent_core {
   sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_SENT ;;
   drill_fields: [id]
@@ -57,7 +57,8 @@ view: email_event_sent_core {
   measure: count {
     label: "Sent Count"
     description: "The message was sent to and received by our delivery provider, which has queued it for further handling."
-    type: count
+    type: number
+    sql: ${email_event.total_recip_sent} ;;
     drill_fields: [id]
   }
 }

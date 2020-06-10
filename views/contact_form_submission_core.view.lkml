@@ -84,7 +84,7 @@ view: contact_form_submission_core {
     description: "Percent of sent emails that lead to a conversion."
     type: number
     sql: ${contact_form_submission.conversions}/IF(${email_event_sent.count}=0,NULL,${email_event_sent.count}) ;;
-    value_format_name: percent_1
+    value_format_name: percent_2
     drill_fields: [contact_id, timestamp_raw]
   }
 }

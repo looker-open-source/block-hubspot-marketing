@@ -435,7 +435,7 @@
     model: block_hubspot_marketing
     explore: contact
     type: single_value
-    fields: [campaign_stats.average_numner_of_sent_emails]
+    fields: [campaign_stats.average_number_of_sent_emails]
     filters: {}
     limit: 500
     column_limit: 50
