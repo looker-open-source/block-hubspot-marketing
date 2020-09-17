@@ -1,14 +1,14 @@
-include: "//@{CONFIG_PROJECT_NAME}/contact_list_member.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/contact_list_member.view.lkml"
+
+
 view: contact_list_member {
   extends: [contact_list_member_config]
 }
 
 ###################################################
-        
+
 view: contact_list_member_core {
-  sql_table_name: @{DATASET_NAME}.CONTACT_LIST_MEMBER ;;
+  sql_table_name: @{DATASET_NAME}.contact_list_member ;;
 
   dimension: pk {
     hidden: yes

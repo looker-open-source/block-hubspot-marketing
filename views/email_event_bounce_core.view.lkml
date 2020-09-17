@@ -1,14 +1,14 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_event_bounce.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_event_bounce.view.lkml"
+
+
 view: email_event_bounce {
   extends: [email_event_bounce_config]
 }
 
 ###################################################
-        
+
 view: email_event_bounce_core {
-  sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_BOUNCE ;;
+  sql_table_name: @{DATASET_NAME}.email_event_bounce ;;
   drill_fields: [id]
 
   dimension: id {

@@ -1,14 +1,14 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_campaign.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_campaign.view.lkml"
+
+
 view: email_campaign {
   extends: [email_campaign_config]
 }
 
 ###################################################
-        
+
 view: email_campaign_core {
-  sql_table_name: @{DATASET_NAME}.EMAIL_CAMPAIGN ;;
+  sql_table_name: @{DATASET_NAME}.email_campaign ;;
   drill_fields: [id]
 
   dimension: id {

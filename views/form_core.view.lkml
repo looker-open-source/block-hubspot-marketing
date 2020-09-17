@@ -1,14 +1,14 @@
-include: "//@{CONFIG_PROJECT_NAME}/form.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/form.view.lkml"
+
+
 view: form {
   extends: [form_config]
 }
 
 ###################################################
-        
+
 view: form_core {
-  sql_table_name: @{DATASET_NAME}.FORM ;;
+  sql_table_name: @{DATASET_NAME}.form ;;
 
   dimension: action {
     type: string
