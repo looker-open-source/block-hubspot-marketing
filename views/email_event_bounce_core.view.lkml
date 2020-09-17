@@ -8,7 +8,7 @@ view: email_event_bounce {
 ###################################################
 
 view: email_event_bounce_core {
-  sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_BOUNCE ;;
+  sql_table_name: @{DATASET_NAME}.email_event_bounce ;;
   drill_fields: [id]
 
   dimension: id {

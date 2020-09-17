@@ -8,7 +8,7 @@ view: contact_form_submission {
 ###################################################
 
 view: contact_form_submission_core {
-  sql_table_name: @{DATASET_NAME}.CONTACT_FORM_SUBMISSION ;;
+  sql_table_name: @{DATASET_NAME}.contact_form_submission ;;
 
   dimension: pk {
     hidden: yes

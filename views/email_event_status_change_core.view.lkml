@@ -1,14 +1,14 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_event_status_change.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_event_status_change.view.lkml"
+
+
 view: email_event_status_change {
   extends: [email_event_status_change_config]
 }
 
 ###################################################
-        
+
 view: email_event_status_change_core {
-  sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_STATUS_CHANGE ;;
+  sql_table_name: @{DATASET_NAME}.email_event_status_change ;;
   drill_fields: [id]
 
   dimension: id {

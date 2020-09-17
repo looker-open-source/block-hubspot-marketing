@@ -1,14 +1,14 @@
-include: "//@{CONFIG_PROJECT_NAME}/owner.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/owner.view.lkml"
+
+
 view: owner {
   extends: [owner_config]
 }
 
 ###################################################
-        
+
 view: owner_core {
-  sql_table_name: @{DATASET_NAME}.OWNER ;;
+  sql_table_name: @{DATASET_NAME}.owner ;;
   drill_fields: [owner_id]
 
   dimension: owner_id {

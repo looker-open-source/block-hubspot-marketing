@@ -12,8 +12,8 @@ view: sequences_inner {
     sql: SELECT
           contact.property_email  AS email,
           email_event.created AS email_date
-        FROM @{DATASET_NAME}.CONTACT  AS contact
-        LEFT JOIN @{DATASET_NAME}.EMAIL_EVENT  AS email_event ON contact.property_email = CAST(email_event.recipient AS STRING)
+        FROM @{DATASET_NAME}.contact  AS contact
+        LEFT JOIN @{DATASET_NAME}.email_event  AS email_event ON contact.property_email = CAST(email_event.recipient AS STRING)
         GROUP BY 1,2 ;;
   }
 

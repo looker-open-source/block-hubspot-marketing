@@ -8,7 +8,7 @@ view: contact {
 ###################################################
 
 view: contact_core {
-  sql_table_name: @{DATASET_NAME}.CONTACT ;;
+  sql_table_name: @{DATASET_NAME}.contact ;;
   drill_fields: [id]
 
   dimension: id {

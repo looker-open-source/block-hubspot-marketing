@@ -1,14 +1,14 @@
-include: "//@{CONFIG_PROJECT_NAME}/email_event_suppressed.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/email_event_suppressed.view.lkml"
+
+
 view: email_event_suppressed {
   extends: [email_event_suppressed_config]
 }
 
 ###################################################
-        
+
 view: email_event_suppressed_core {
-  sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_SUPPRESSED ;;
+  sql_table_name: @{DATASET_NAME}.email_event_suppressed ;;
   drill_fields: [id]
 
   dimension: id {

@@ -8,7 +8,7 @@ view: email_event_click {
 ###################################################
 
 view: email_event_click_core {
-  sql_table_name: @{DATASET_NAME}.EMAIL_EVENT_CLICK ;;
+  sql_table_name: @{DATASET_NAME}.email_event_click ;;
   drill_fields: [id]
 
   dimension: id {

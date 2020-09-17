@@ -8,7 +8,7 @@ view: email_subscription_change {
 ###################################################
 
 view: email_subscription_change_core {
-  sql_table_name: @{DATASET_NAME}.EMAIL_SUBSCRIPTION_CHANGE ;;
+  sql_table_name: @{DATASET_NAME}.email_subscription_change ;;
 
   dimension: pk {
     hidden: yes
