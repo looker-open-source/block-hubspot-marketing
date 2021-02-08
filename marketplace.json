@@ -20,7 +20,7 @@
   },
   "models": [
     {
-      "name": "block_hubspot",
+      "name": "block_hubspot_marketing",
       "connection_constant": "CONNECTION_NAME"
     }
   ],
