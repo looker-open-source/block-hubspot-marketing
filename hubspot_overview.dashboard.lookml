@@ -1,6 +1,7 @@
 - dashboard: hubspot_overview
   title: Hubspot Overview
   layout: newspaper
+  preferred_viewer: dashboards-next
   elements:
   - title: Conversion Rate, All Campaigns
     name: Conversion Rate, All Campaigns
