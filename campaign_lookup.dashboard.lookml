@@ -1,6 +1,7 @@
 - dashboard: campaign_lookup
   title: Campaign Lookup
   layout: newspaper
+  preferred_viewer: dashboards-next
   elements:
   - title: Campaign Name
     name: Campaign Name
