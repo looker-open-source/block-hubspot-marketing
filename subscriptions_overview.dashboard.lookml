@@ -1,6 +1,7 @@
 - dashboard: subscriptions_overview
   title: Subscriptions Overview
   layout: newspaper
+  preferred_viewer: dashboards-next
   elements:
   - title: Subscription Event Flow
     name: Subscription Event Flow
