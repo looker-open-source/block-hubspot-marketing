@@ -13,9 +13,6 @@
     },
     "SCHEMA_NAME": {
       "label": "Hubspot Schema Name"
-    },
-    "CONFIG_PROJECT_NAME": {
-      "label": "Config Project Name"
     }
   },
   "models": [
