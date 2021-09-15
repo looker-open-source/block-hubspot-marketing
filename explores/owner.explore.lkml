@@ -1,6 +1,5 @@
 include: "/views/*.view"
 explore: owner {
-  extension: required
   label: "Calendar Event"
 
 join: calendar_event {

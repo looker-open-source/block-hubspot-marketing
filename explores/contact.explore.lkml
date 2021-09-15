@@ -1,6 +1,5 @@
 include: "/views/*.view*"
 explore: contact {
-  #extension: required
   join: contact_list_member {
   sql_on: ${contact.id} = ${contact_list_member.contact_id} ;;
   relationship: many_to_one

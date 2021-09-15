@@ -5,7 +5,7 @@
   elements:
   - title: Campaign Name
     name: Campaign Name
-    model: block_hubspot_marketing
+    model: block_hubspot_marketing_v2
     explore: contact
     type: single_value
     fields: [email_campaign.name]

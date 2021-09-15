@@ -113,7 +113,7 @@
     height: 4
   - title: Open Rate, All Campaigns
     name: Open Rate, All Campaigns
-    model: block_hubspot_marketing
+    model: block_hubspot_marketing_v2
     explore: contact
     type: single_value
     fields: [email_event_open.opened_pct]
