@@ -11,8 +11,8 @@
       "label": "Connection Name",
       "value_constraint": "connection"
     },
-    "SCHEMA_NAME": {
-      "label": "Hubspot Schema Name"
+    "DATASET_NAME": {
+      "label": "Hubspot Dataset Name"
     }
   },
   "models": [
