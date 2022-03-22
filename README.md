@@ -17,3 +17,7 @@ This block is based on the [Hubspot Marketing Schema](https://fivetran.com/docs/
   - "Subscriptions Overview" - See subscription and spam report activity over time, identify which campaigns are subscribed to or unsibscribed from the most.
 
 - Create your own centralized dashboards for the entire team, and departmental or individual dashboards for each user, and rest easy knowing everyone is looking at the same information at all times. Then schedule the dashboard for emails or alerts, period-end reporting, anamoly detection, or whatever else serves your use-case.
+
+#### (4) Customize**
+- This block uses refinements for customization. For more information on using refinements to customize marketplace blocks, please see [this link](https://docs.looker.com/data-modeling/marketplace/customize-blocks#marketplace_blocks_that_use_refinements).
+- Using Refinements, you can add new content or modify existing content without needing to copy LookML files into another project.
