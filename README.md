@@ -1,5 +1,7 @@
 # Hubspot Marketing
 
+This is not an officially supported Google product. This project is not eligible for the [Google Open Source Software Vulnerability Rewards Program](https://bughunters.google.com/open-source-security).
+
 This block is based on the [Hubspot Marketing Schema](https://fivetran.com/docs/applications/hubspot#hubspotmarketingschema) provided by [Fivetran's ETL](https://fivetran.com/docs/applications/hubspot/setup-guide) or Looker's managed ETL via [The Connection Hub](https://docs.looker.com/setup-and-management/connecting-to-db#new_database).
 
 ### What does this Block do for me?
